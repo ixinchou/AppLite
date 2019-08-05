@@ -1,0 +1,89 @@
+/* pages/main/main.wxss */
+
+.header {
+    width: 100%;
+    background: rgb(147, 243, 22);
+    display: flex;
+    flex-direction: column;
+}
+
+.header-hover {
+    background: rgb(136, 224, 21);
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20rpx;
+}
+
+.user-info-avator {
+    width: 120rpx;
+    height: 100rpx;
+    border-radius: 100rpx;
+}
+
+.userinfo-nickname {
+    margin-left: 20rpx;
+    line-height: 100rpx;
+    font-size: 30rpx;
+    color: #fff;
+    width: 100%;
+}
+
+.userinfo-nickname-right {
+    color: #fff;
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+}
+
+.menu-item {
+    width: 25%;
+    align-items: center;
+    padding: 20rpx;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item-hover {
+    background: #eee;
+}
+
+.menu-item-icon-cycle {
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 70rpx;
+    align-items: center;
+}
+
+.menu-item-icon {
+    margin-left: 15rpx;
+    margin-top: 15rpx;
+    font-size: 40rpx;
+    color: #fff;
+    align-items: center;
+}
+
+.menu-item-text {
+    color: #aaa;
+    margin-top: 5rpx;
+    font-size: 25rpx;
+}
+
+.swiper {
+    width: 100%;
+}
+
+.swiper-item {
+    width: 100%;
+}
+
+.body {
+    height: 100rpx;
+    width: 100%;
+    background: #eee;
+}

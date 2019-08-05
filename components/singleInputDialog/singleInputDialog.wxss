@@ -1,0 +1,2 @@
+/* components/singleInputDialog/singleInputDialog.wxss */
+@import "../common/dialog-ui.wxss";

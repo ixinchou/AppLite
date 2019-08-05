@@ -1,0 +1,108 @@
+/**app.wxss**/
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+page {
+    font-size: 30rpx;
+}
+
+view, text, image, button, input, label, radio, picker, picker-view, slider,
+form, checkbox, swiper, button {
+    box-sizing: border-box;
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+}
+
+/*在线iconfont字体代码*/
+
+@font-face {
+    font-family: 'ixchou-font'; /* project id 1305853 */
+    src: url('//at.alicdn.com/t/font_1305853_3vtec42bnas.eot');
+    src: url('//at.alicdn.com/t/font_1305853_3vtec42bnas.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_1305853_3vtec42bnas.woff2') format('woff2'),
+         url('//at.alicdn.com/t/font_1305853_3vtec42bnas.woff') format('woff'),
+         url('//at.alicdn.com/t/font_1305853_3vtec42bnas.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_1305853_3vtec42bnas.svg#ixchou-font') format('svg');
+}
+
+.ixchou-font {
+    font-family: "ixchou-font" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ixchou-children:before {
+    content: "\e616";
+}
+
+.ixchou-nanhai:before {
+    content: "\e60a";
+}
+
+.ixchou-fenlei:before {
+    content: "\e628";
+}
+
+.ixchou-jianjie:before {
+    content: "\e641";
+}
+
+.ixchou-fengcai:before {
+    content: "\e6bc";
+}
+
+.ixchou-fengcai-hollow:before {
+    content: "\e6c4";
+}
+
+.ixchou-meishu:before {
+    content: "\e609";
+}
+
+.ixchou-nvhai:before {
+    content: "\e600";
+}
+
+.ixchou-younao:before {
+    content: "\e605";
+}
+
+.ixchou-huazhuangshi:before {
+    content: "\e632";
+}
+
+.ixchou-phone:before {
+    content: "\e60c";
+}
+
+.ixchou-wudao:before {
+    content: "\e643";
+}
+
+.ixchou-zhuchiren:before {
+    content: "\e76b";
+}
+
+.ixchou-xingming:before {
+    content: "\e61f";
+}
+
+.ixchou-you:before {
+    content: "\e627";
+}
+
+.ixchou-add-fill:before {
+    content: "\e6ab";
+}
+
+.ixchou-add:before {
+    content: "\e6ac";
+}

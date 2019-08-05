@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "modal": "../../components/childBindDialog/childBindDialog",
+        "modalInput": "../../components/singleInputDialog/singleInputDialog"
+    },
+    "navigationBarTitleText": "我的信息"
+}

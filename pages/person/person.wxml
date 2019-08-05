@@ -1,0 +1,58 @@
+<!--pages/person/person.wxml-->
+<view class="main">
+    <view class="header">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <text class="userinfo-dercription">　　欢迎您登录注册新筹教育培训学校，您需要在这里绑定您的手机号码以及在校参加学习的孩子信息，您放心，您的这些信息我们都会加密保存。</text>
+        <text class="userinfo-dercription">　　我们承诺『绝对不会』向任何第三方组织和个人透露您的这些私密信息。</text>
+    </view>
+    <view class="menus" wx:for="{{menus}}" wx:key="id">
+        <view class="menus-item" hover-class="menus-item-hover" bindtap="menuItemClick" data-index="{{item.id}}">
+            <icon class="ixchou-font ixchou-{{item.icon}} icon-left"></icon>
+            <text class="menu-item-text">{{item.text}}</text>
+            <block wx:if="{{item.id==2}}">
+                <button class="button-phone" wx:if='{{item.value==""}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">{{item.dftValue}}</button>
+                <text class="menus-item-value" wx:else>{{item.value}}</text>
+            </block>
+            <block wx:else>
+                <text class="menus-item-value" wx:if='{{item.value==""}}'>{{item.dftValue}}</text>
+                <text class="menus-item-value" wx:else>{{item.value}}</text>
+            </block>
+            <icon class="ixchou-font ixchou-you icon-right"></icon>
+        </view>
+    </view>
+    <view class="menus" style="margin-bottom: 20rpx;">
+        <view class="children">
+            <view class="children-title-bar" style="margin-bottom: 0px !important;">
+                <icon class="ixchou-font ixchou-children icon-left"></icon>
+                <text class="menu-item-text">孩子的信息</text>
+                <text class="menus-item-value"></text>
+                <button class="ixchou-font ixchou-add-fill icon-add" hover-class="icon-add-hover" style="font-size: 40rpx; width: 100rpx; height: 100rpx; text-align: center;" bindtap="openChildBindDialog"></button>
+            </view>
+            <view wx:if="{{children.length>0}}">
+                <view class="children-title" style="margin-bottom: 10rpx;">
+                    <text class="children-title-text children-title-name">名字</text>
+                    <text class="children-title-text children-title-age">年龄</text>
+                    <text class="children-title-text children-title-age">性别</text>
+                    <text class="children-title-text children-title-oper">#</text>
+                </view>
+                <view wx:for="{{children}}" wx:key="id">
+                    <view class="children-title">
+                        <text class="children-text children-title-name">{{item.name}}</text>
+                        <text class="children-text children-title-age">{{item.age}} 岁</text>
+                        <text class="children-text children-title-age">{{item.sex == 1 ? "男" : "女"}}孩</text>
+                        <button class="children-text children-title-oper children-delete" hover-class="children-delete-hover" data-index="{{item.id}}" bindtap="childrenDelete">删除</button>
+                    </view>
+                </view>
+            </view>
+            <view class="children-title" wx:else>
+                <text class="children-text children-title-name">添加孩子的信息</text>
+            </view>
+        </view>
+    </view>
+</view>
+<modal id='modal' dialogTitle='添加孩子信息' dialogContent='我是内容' isShowning="{{dialogShowning}}" bind:cancelEvent="cancelChildDialog" bind:confirmEvent="confirmChildDialog">
+</modal>
+<modalInput id='modalInput' dialogTitle='{{inputableDialogTitle}}' inputPlaceHolder='{{inputableDialogHint}}' isShowning="{{singleInputDialogSHowning}}" inputType="{{inputableType}}" maxLength="{{inputableLength}}" bind:cancelEvent="cancelInputableDialog"
+    bind:confirmEvent="confirmInputabledDialog">
+</modalInput>

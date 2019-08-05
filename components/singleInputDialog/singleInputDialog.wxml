@@ -1,0 +1,17 @@
+<!--components/singleInputDialog/singleInputDialog.wxml-->
+<view hidden='{{!isShowning}}'>
+    <view class="modal">
+        <view class='modal-content'>
+            <view class='modal-top'>
+                <view class='header'>{{dialogTitle}}</view>
+            </view>
+            <view class='modal-body'>
+                <input placeholder="{{inputPlaceHolder}}" id="input" type="{{inputType}}" maxlength="{{maxLength}}" class="input" value="{{inputValue}}" bindinput="bindInput"></input>
+            </view>
+            <view class='modal-footer'>
+                <button type="default" class="cancle" catchtap='_cancelEvent'>{{dialogCancelText}}</button>
+                <button type="primary" class="sure" catchtap='_confirmEvent'>{{dialogConfirmText}}</button>
+            </view>
+        </view>
+    </view>
+</view>
