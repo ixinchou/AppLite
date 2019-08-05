@@ -57,7 +57,7 @@ Component({
             this.setData({
                 isShowning: true,
                 childName: "",
-                childAge: "",
+                childAge: 0,
                 childBirthday: util.formatDate(new Date()),
                 childSex: 1
             });
@@ -66,9 +66,14 @@ Component({
          * 确定事件
          */
         _confirmEvent: function() {
-            if (this.data.childName == "") {
+            if (this.data.childName == "" || this.data.childName.length <= 1) {
                 wx.showToast({
-                    title: '名字不能为空',
+                    title: '名字至少需要 2 个字',
+                    icon: 'none'
+                });
+            } else if (this.data.childAge < 3) {
+                wx.showToast({
+                    title: '年龄太小了(至少3岁)',
                     icon: 'none'
                 });
             } else {
@@ -94,7 +99,7 @@ Component({
             var date = util.parseDate(e.detail.value);
             this.setData({
                 childBirthday: e.detail.value,
-                childAge: util.calcluateAge(date)
+                childAge: util.calculateAge(date)
             })
         },
         bindInput: function(e) {

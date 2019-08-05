@@ -41,11 +41,36 @@ const parseDate = str => {
 
 const calculateAge = date => {
     var now = new Date();
-    var today = new Date(now.getFullYear(), now.getMonth(), now.getDay());
-    var that = new Date(date.getFullYear(), date.getMonth(), date.getDay());
-    var days = parseInt(Math.abs(today - that) / 1000 / 60 / 60 / 24);
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var that = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
-    return Math.floor(days / 365);
+    var ages = 0;
+
+    if (today.getFullYear() == that.getFullYear()) {
+        // 年数相等则0岁
+        ages = 0;
+    } else {
+        // 年数不想等
+        ages = today.getFullYear() - that.getFullYear();
+        if (today.getMonth() == that.getMonth()) {
+            // 生日月，看日期
+            var dayDiff = today.getDate() - that.getDate();
+            if (dayDiff < 0) {
+                // 不到生日，年龄-1
+                ages -= 1;
+            }
+        } else {
+            var monthDiff = today.getMonth() - that.getMonth();
+            if (monthDiff < 0) {
+                ages -= 1;
+            }
+        }
+    }
+    // var interval = today - that;
+    // var days = Math.floor(Math.abs(interval) / 1000 / 60 / 60 / 24);
+    // console.log(days);
+
+    return ages;
 }
 
 module.exports = {

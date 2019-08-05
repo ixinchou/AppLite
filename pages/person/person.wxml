@@ -36,14 +36,14 @@
                     <text class="children-title-text children-title-age">性别</text>
                     <text class="children-title-text children-title-oper">#</text>
                 </view>
-                <view wx:for="{{children}}" wx:key="id">
+                <block wx:for="{{children}}" wx:key="id">
                     <view class="children-title">
                         <text class="children-text children-title-name">{{item.name}}</text>
                         <text class="children-text children-title-age">{{item.age}} 岁</text>
                         <text class="children-text children-title-age">{{item.sex == 1 ? "男" : "女"}}孩</text>
                         <button class="children-text children-title-oper children-delete" hover-class="children-delete-hover" data-index="{{item.id}}" bindtap="childrenDelete">删除</button>
                     </view>
-                </view>
+                </block>
             </view>
             <view class="children-title" wx:else>
                 <text class="children-text children-title-name">添加孩子的信息</text>

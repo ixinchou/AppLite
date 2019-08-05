@@ -139,6 +139,7 @@ page {
 .children-title {
     display: flex;
     align-items: center;
+    width: 100%;
     flex-direction: row;
 }
 
@@ -150,15 +151,15 @@ page {
 
 .children-title-name {
     margin-left: 50rpx;
-    flex: 2;
+    width: 40%;
 }
 
 .children-title-age {
-    flex: 2;
+    width: 20%;
 }
 
 .children-title-oper {
-    flex: 1;
+    width: 20%;
     text-align: center;
 }
 
