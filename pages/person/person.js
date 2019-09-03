@@ -56,11 +56,15 @@ Page({
                 for (let item of list) {
                     var birthday = item.birthday.substring(0, 10);
                     item.age = util.calculateAge(util.parseDate(birthday));
-                }
+                } 
                 app.globalData.children = res.data.data
                 that.setData({
                     children: res.data.data
                 });
+            });
+        } else {
+            this.setData({
+                children: app.globalData.children
             });
         }
     },
@@ -267,7 +271,7 @@ Page({
             var that = this;
             var del = child[0];
             wx.showModal({
-                content: "确定要删除您添加的 " + del.name + " 的登记信息吗？",
+                content: "确定要删除 " + del.name + " 的信息吗？",
                 confirmText: "确定",
                 cancelText: "取消",
                 success(res) {
