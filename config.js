@@ -3,8 +3,8 @@ var host = "http://10.141.130.4:8080"; //"https://www.ixchou.com";
 
 // 配置对象
 var config = {
-    usePost: `POST`,
-    useGet: `GET`,
+    POST: `POST`,
+    GET: `GET`,
     host,
 
     // 热点轮播图列表
@@ -28,6 +28,8 @@ var config = {
     childAdd: `${host}/api/child/add`,
     // 孩子信息列表
     childList: `${host}/api/child/list/`,
+    // 删除孩子信息
+    childDelete: `${host}/api/child/delete/`,
 
     // 显示加载中界面
     showLoading: function(title) {
@@ -63,6 +65,42 @@ var config = {
             },
             complete: res => {
                 config.hideLoading();
+            }
+        });
+    },
+    // GET方式拉取远程服务器上的数据
+    get: function(url, params, success, failure) {
+        this.fetchingData(url, params, this.GET, function(res) {
+            if (res.data.code === "000") {
+                if (null != success) {
+                    success(res.data);
+                }
+            } else {
+                wx.showToast({
+                    title: res.data.message,
+                    icon: 'none'
+                });
+                if (null != failure) {
+                    failure(res.data);
+                }
+            }
+        });
+    },
+    // POST方式获取远程服务器上的数据
+    post: function(url, params, success, failure) {
+        this.fetchingData(url, params, this.POST, function(res) {
+            if (res.data.code === "000") {
+                if (null != success) {
+                    success(res.data);
+                }
+            } else {
+                wx.showToast({
+                    title: res.data.message,
+                    icon: 'none'
+                });
+                if (null != failure) {
+                    failure(res.data);
+                }
             }
         });
     }

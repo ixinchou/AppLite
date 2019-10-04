@@ -36,11 +36,11 @@ App({
     },
     fetchingDetails: function(session) {
         var that = this;
-        config.fetchingData(config.findMemberBySessionId + session, null, config.useGet, function(res) {
+        config.get(config.findMemberBySessionId + session, null, function(res) {
             // 拉取服务器上的用户信息
             console.log(res);
             // 缓存我的信息
-            that.globalData.myInfo = res.data.data;
+            that.globalData.myInfo = res.data;
         });
     },
     globalData: {
@@ -64,14 +64,12 @@ App({
                     obj.loginCode = login_code;
                     obj.nickName = this.globalData.userInfo.nickName;
                     obj.gender = this.globalData.userInfo.gender;
-                    config.fetchingData(config.wxInfo, obj, config.usePost, function(res) {
+                    config.post(config.wxInfo, obj, function(res) {
                         console.log(res);
                         // 本地保存服务器生成的sessionId
-                        if (res.data.code == "000") {
-                            wx.setStorageSync("ixchou_session", res.data.data.sessionId);
-                            // 拉取用户的详细信息
-                            that.globalData.myInfo = res.data.data;
-                        }
+                        wx.setStorageSync("ixchou_session", res.data.sessionId);
+                        // 拉取用户的详细信息
+                        that.globalData.myInfo = res.data;
                     });
                 }
             })

@@ -50,16 +50,16 @@ Page({
             // 没有拉取过孩子信息，则这里拉取并缓存
             var that = this;
             // 拉取我添加的孩子列表
-            config.fetchingData(config.childList + app.globalData.myInfo.sessionId, null, config.useGet, function(res) {
+            config.get(config.childList + app.globalData.myInfo.sessionId, null, function(res) {
                 console.log(res);
-                var list = res.data.data;
+                var list = res.data;
                 for (let item of list) {
                     var birthday = item.birthday.substring(0, 10);
                     item.age = util.calculateAge(util.parseDate(birthday));
-                } 
-                app.globalData.children = res.data.data
+                }
+                app.globalData.children = res.data
                 that.setData({
-                    children: res.data.data
+                    children: res.data
                 });
             });
         } else {
@@ -143,12 +143,12 @@ Page({
         param.iv = e.detail.iv;
         param.encryptedData = e.detail.encryptedData;
         param.sessionId = app.globalData.myInfo.sessionId;
-        config.fetchingData(config.wxPhone, param, config.usePost, function(e) {
+        config.post(config.wxPhone, param, function(e) {
             console.log(e);
             // 本地全局缓存我的详细信息
-            app.globalData.myInfo = e.data.data;
+            app.globalData.myInfo = e.data;
             var menu = that.data.menus;
-            menu[1].value = e.data.data.phone;
+            menu[1].value = e.data.phone;
             // 更新UI上的手机号码
             that.setData({
                 menus: menu
@@ -203,16 +203,14 @@ Page({
                 var param = {};
                 param.sessionId = app.globalData.myInfo.sessionId;
                 param.userName = data.inputValue;
-                config.fetchingData(config.updateMemberName, param, config.usePost, function(res) {
-                    if (res.data.code == "000") {
-                        // 更改成功
-                        var item = items[index];
-                        item.value = data.inputValue;
-                        items[index] = item;
-                        that.setData({
-                            menus: items
-                        });
-                    }
+                config.post(config.updateMemberName, param, function(res) {
+                    // 更改成功
+                    var item = items[index];
+                    item.value = data.inputValue;
+                    items[index] = item;
+                    that.setData({
+                        menus: items
+                    });
                 });
             } else {
                 var item = items[index];
@@ -242,21 +240,14 @@ Page({
         child.sessionId = app.globalData.myInfo.sessionId;
         // 向远程服务器添加一条孩子的信息
         var that = this;
-        config.fetchingData(config.childAdd, child, config.usePost, function(res) {
+        config.post(config.childAdd, child, function(res) {
             console.log(res)
-            if (res.data.code == "000") {
-                var chs = that.data.children;
-                child.id = chs.length + 1;
-                chs.push(child);
-                that.setData({
-                    children: chs
-                });
-            } else {
-                wx.showToast({
-                    title: res.data.message,
-                    icon: 'none'
-                });
-            }
+            var chs = that.data.children;
+            child.id = chs.length + 1;
+            chs.push(child);
+            that.setData({
+                children: chs
+            });
         });
     },
     cancelChildDialog: function() {
@@ -276,11 +267,13 @@ Page({
                 cancelText: "取消",
                 success(res) {
                     if (res.confirm) {
-                        console.log("删除已登记的孩子的信息");
-                        var source = that.data.children;
-                        source.splice(del, 1);
-                        that.setData({
-                            children: source
+                        config.post(config.childDelete + del.id, null, function(data) {
+                            console.log("删除已登记的孩子的信息");
+                            var source = that.data.children;
+                            source.splice(del, 1);
+                            that.setData({
+                                children: source
+                            });
                         });
                     }
                 }
