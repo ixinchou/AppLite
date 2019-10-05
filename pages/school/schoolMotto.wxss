@@ -1,0 +1,45 @@
+/* pages/school/schoolMotto.wxss */
+
+page {
+    background-color: #f8f8f8;
+    height: 100%;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.motto-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 20rpx;
+    font-size: 35rpx;
+}
+
+.motto-edit {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100rpx;
+}
+
+.motto-edit-hover {
+    background-color: #f0f0f0;
+}
+
+.motto-edit-icon {
+    margin-right: 10rpx;
+}
+
+.motto-icon {
+    line-height: 100rpx;
+    color: #0151b9;
+}

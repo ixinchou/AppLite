@@ -4,36 +4,32 @@
     width: 100%;
     background: rgb(147, 243, 22);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-hover {
     background: rgb(136, 224, 21);
 }
 
-.user-info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 20rpx;
-}
-
 .user-info-avator {
-    width: 120rpx;
+    margin: 20rpx;
+    width: 100rpx;
     height: 100rpx;
-    border-radius: 100rpx;
+    border-radius: 50rpx;
 }
 
 .userinfo-nickname {
-    margin-left: 20rpx;
-    line-height: 100rpx;
     font-size: 30rpx;
     color: #fff;
-    width: 100%;
+    width: 80%;
+    line-height: 100rpx;
 }
 
 .userinfo-nickname-right {
     color: #fff;
+    line-height: 100rpx;
 }
 
 .menu {
@@ -54,15 +50,16 @@
 }
 
 .menu-item-icon-cycle {
-    width: 70rpx;
-    height: 70rpx;
-    border-radius: 70rpx;
+    width: 75rpx;
+    height: 75rpx;
+    display: flex;
+    flex-direction: column;
+    border-radius: 40rpx;
     align-items: center;
+    justify-content: center;
 }
 
 .menu-item-icon {
-    margin-left: 15rpx;
-    margin-top: 15rpx;
     font-size: 40rpx;
     color: #fff;
     align-items: center;

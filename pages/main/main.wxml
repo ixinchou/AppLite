@@ -1,12 +1,10 @@
 <!--pages/main/main.wxml-->
 <view class="container">
-    <view class="header" hover-class="header-hover">
-        <view class="user-info" bindtap="fireToPersonal">
-            <!--用户头像-->
-            <image class="user-info-avator" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-            <text class="userinfo-nickname">欢迎您，{{userInfo.nickName}}</text>
-            <icon class="ixchou-font ixchou-you userinfo-nickname-right"></icon>
-        </view>
+    <view class="header" hover-class="header-hover" bindtap="fireToPersonal">
+        <!--用户头像-->
+        <image class="user-info-avator" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">欢迎您，{{userInfo.nickName}}</text>
+        <icon class="ixchou-font ixchou-you userinfo-nickname-right"></icon>
     </view>
     <view class="swiper">
         <swiper indicator-dots="true" autoplay="true" interval="5000" duration="2000" circular="true" style="width: 100%; height: {{swiper_height}}rpx;">
@@ -18,7 +16,7 @@
         </swiper>
     </view>
     <view class="menu" style="flex-direction: row;">
-        <view class="menu-item" hover-class="menu-item-hover">
+        <view class="menu-item" hover-class="menu-item-hover" bindtap="fireToMotto">
             <view class="menu-item-icon-cycle" style="background: #f00;">
                 <view class="ixchou-font ixchou-jianjie menu-item-icon"></view>
             </view>

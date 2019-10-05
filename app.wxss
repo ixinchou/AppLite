@@ -23,20 +23,25 @@ form, checkbox, swiper, button {
 
 @font-face {
     font-family: 'ixchou-font'; /* project id 1305853 */
-    src: url('//at.alicdn.com/t/font_1305853_3vtec42bnas.eot');
-    src: url('//at.alicdn.com/t/font_1305853_3vtec42bnas.eot?#iefix') format('embedded-opentype'),
-         url('//at.alicdn.com/t/font_1305853_3vtec42bnas.woff2') format('woff2'),
-         url('//at.alicdn.com/t/font_1305853_3vtec42bnas.woff') format('woff'),
-         url('//at.alicdn.com/t/font_1305853_3vtec42bnas.ttf') format('truetype'),
-         url('//at.alicdn.com/t/font_1305853_3vtec42bnas.svg#ixchou-font') format('svg');
+    src: url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.eot');
+    src: url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.woff2') format('woff2'),
+         url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.woff') format('woff'),
+         url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.svg#ixchou-font') format('svg');
 }
 
 .ixchou-font {
     font-family: "ixchou-font" !important;
     font-size: 16px;
     font-style: normal;
+    vertical-align: middle;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.ixchou-divider:before {
+    content: "\e618";
 }
 
 .ixchou-children:before {
@@ -51,8 +56,20 @@ form, checkbox, swiper, button {
     content: "\e628";
 }
 
+.ixchou-unordered:before {
+    content: "\e64a";
+}
+
+.ixchou-ordered:before {
+    content: "\e862";
+}
+
 .ixchou-jianjie:before {
     content: "\e641";
+}
+
+.ixchou-image:before {
+    content: "\e62a";
 }
 
 .ixchou-fengcai:before {
@@ -69,6 +86,18 @@ form, checkbox, swiper, button {
 
 .ixchou-nvhai:before {
     content: "\e600";
+}
+
+.ixchou-bold:before {
+    content: "\e637";
+}
+
+.ixchou-h2:before {
+    content: "\e65e";
+}
+
+.ixchou-h3:before {
+    content: "\e65f";
 }
 
 .ixchou-younao:before {
@@ -91,12 +120,24 @@ form, checkbox, swiper, button {
     content: "\e76b";
 }
 
+.ixchou-underline:before {
+    content: "\e674";
+}
+
 .ixchou-xingming:before {
     content: "\e61f";
 }
 
 .ixchou-you:before {
     content: "\e627";
+}
+
+.ixchou-italic:before {
+    content: "\e670";
+}
+
+.ixchou-bianji:before {
+    content: "\e866";
 }
 
 .ixchou-add-fill:before {

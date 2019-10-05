@@ -30,6 +30,18 @@ var config = {
     childList: `${host}/api/child/list/`,
     // 删除孩子信息
     childDelete: `${host}/api/child/delete/`,
+    /**
+     * 添加校训
+     */
+    mottoAdd: `${host}/api/motto/insert`,
+    /**
+     * 编辑校训
+     */
+    mottoEdit: `${host}/api/motto/update`,
+    /**
+     * 获取校训
+     */
+    mottoGet: `${host}/api/motto/get`,
 
     // 显示加载中界面
     showLoading: function(title) {
@@ -61,9 +73,10 @@ var config = {
             method: usedMethod,
             data: params,
             success: res => {
+                config.hideLoading();
                 callback(res);
             },
-            complete: res => {
+            fail: res => {
                 config.hideLoading();
             }
         });

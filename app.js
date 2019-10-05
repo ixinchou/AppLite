@@ -1,11 +1,12 @@
 //app.js
 const config = require("config.js");
+const storage = require("storage.js");
 
 App({
     onLaunch: function() {
         // 查看本地存储中是否有 session 信息
         var that = this;
-        var session = wx.getStorageSync("ixchou_session");
+        var session = storage.get(storage.IXCHOU_SESSION);
         if (null == session || "" === session) {
             this.globalData.hasSession = false;
         } else {
@@ -36,11 +37,12 @@ App({
     },
     fetchingDetails: function(session) {
         var that = this;
+        // 拉取服务器上的用户信息
         config.get(config.findMemberBySessionId + session, null, function(res) {
-            // 拉取服务器上的用户信息
-            console.log(res);
             // 缓存我的信息
             that.globalData.myInfo = res.data;
+            // 缓存是否具有管理员属性
+            //storage.set(storage.IXCHOU_ADMIN, res.data.isUploadAble);
         });
     },
     globalData: {
@@ -67,7 +69,9 @@ App({
                     config.post(config.wxInfo, obj, function(res) {
                         console.log(res);
                         // 本地保存服务器生成的sessionId
-                        wx.setStorageSync("ixchou_session", res.data.sessionId);
+                        storage.set(storage.IXCHOU_SESSION, res.data.sessionId);
+                        // 是否具有管理员属性
+                        //storage.set(storage.IXCHOU_ADMIN, res.data.isUploadAble);
                         // 拉取用户的详细信息
                         that.globalData.myInfo = res.data;
                     });

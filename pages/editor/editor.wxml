@@ -1,0 +1,18 @@
+<view class="container" style="height:{{editorHeight}}px;">
+    <editor id="editor" class="ql-container" placeholder="{{placeholder}}" bindstatuschange="onStatusChange" bindready="onEditorReady">
+    </editor>
+    <button type="primary" style="width: 90%; margin: 10rpx;" bindtap="saveContents">保存</button>
+</view>
+
+<view class="toolbar" catchtouchend="format" hidden="{{keyboardHeight > 0 ? false : true}}" style="bottom: {{isIOS ? keyboardHeight : 0}}px">
+    <view class="incoview ixchou-font ixchou-image" catchtouchend="insertImage"></view>
+    <view class="iconview ixchou-font ixchou-divider" catchtouchend="insertDivider"></view>
+    <view class="iconview ixchou-font ixchou-h2 {{formats.header === 2 ? 'ql-active' : ''}}" data-name="header" data-value="{{2}}"></view>
+    <view class="iconview ixchou-font ixchou-h3 {{formats.header === 3 ? 'ql-active' : ''}}" data-name="header" data-value="{{3}}"></view>
+    <view class="iconview ixchou-font ixchou-bold {{formats.bold ? 'ql-active' : ''}}" data-name="bold"></view>
+    <view class="iconview ixchou-font ixchou-italic {{formats.italic ? 'ql-active' : ''}}" data-name="italic"></view>
+    <view class="iconview ixchou-font ixchou-underline {{formats.underline ? 'ql-active' : ''}}" data-name="underline"></view>
+    <!-- <view class="iconview icon--checklist" data-name="list" data-value="check"></view> -->
+    <view class="iconview ixchou-font ixchou-ordered {{formats.list === 'ordered' ? 'ql-active' : ''}}" data-name="list" data-value="ordered"></view>
+    <view class="iconview ixchou-font ixchou-unordered {{formats.list === 'bullet' ? 'ql-active' : ''}}" data-name="list" data-value="bullet"></view>
+</view>

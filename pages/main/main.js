@@ -91,9 +91,14 @@ Page({
     onShareAppMessage: function() {
 
     },
-    fireToPersonal:function(){
+    fireToPersonal: function() {
         wx.navigateTo({
             url: '/pages/person/person',
+        })
+    },
+    fireToMotto: function() {
+        wx.navigateTo({
+            url: '/pages/school/schoolMotto',
         })
     }
 })
