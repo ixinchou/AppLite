@@ -1,5 +1,6 @@
 // pages/editor/editor.js
 const storage = require("../../storage.js");
+var sMD5 = require('../../utils/spark-md5.js')
 Page({
 
     /**
@@ -209,6 +210,35 @@ Page({
         wx.chooseImage({
             count: 1,
             success: function(res) {
+                // console.log(res);
+                // wx.getFileSystemManager().readFile({
+                //     filePath: res.tempFilePaths[0],
+                //     success: res => {
+                //         console.log(res);
+                //         var spark = new sMD5.ArrayBuffer();
+                //         spark.append(res.data);
+                //         var hexHash = spark.end(false);
+                //         console.log(hexHash);
+                //     }
+                // });
+                var obj = {};
+                wx.getFileInfo({
+                    filePath: res.tempFilePaths[0],
+                    digestAlgorithm: 'sha1',
+                    success: res => {
+                        obj.size = res.size;
+                        obj.signature = res.digest;
+                        console.log(obj);
+                        wx.getImageInfo({
+                            src: res.tempFilePaths[0],
+                            success: res => {
+                                obj.height = res.height;
+                                obj.width = res.width;
+                                console.log(obj);
+                            }
+                        });
+                    }
+                });
                 that.editorCtx.insertImage({
                     src: res.tempFilePaths[0],
                     data: {
@@ -217,7 +247,7 @@ Page({
                     },
                     width: '80%',
                     success: function() {
-                        console.log('insert image success')
+                        //console.log('insert image success')
                     }
                 })
             }
