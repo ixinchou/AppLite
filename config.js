@@ -1,5 +1,5 @@
 // 主域名
-var host = "http://10.141.130.4:8080"; //"https://www.ixchou.com";
+var host = "http://192.168.80.173:8080"; //"https://www.ixchou.com";
 
 // 配置对象
 var config = {
@@ -42,6 +42,14 @@ var config = {
      * 获取校训
      */
     mottoGet: `${host}/api/motto/get`,
+    /**
+     * 查询远程服务器上是否有相同文件
+     */
+    fileCheck: `${host}/api/attachment/query`,
+    /**
+     * 上传文件
+     */
+    fileUpload: `${host}/api/attachment/upload`,
 
     // 显示加载中界面
     showLoading: function(title) {
@@ -116,6 +124,44 @@ var config = {
                 }
             }
         });
+    },
+    /**
+     * 上传文件
+     */
+    upload: function(file, success, failure) {
+        config.showLoading("上传中，请稍候...");
+        let that = this;
+        wx.uploadFile({
+            url: that.fileUpload,
+            filePath: file.path,
+            name: 'file',
+            formData: {
+                // 其他额外参数列表
+                size: file.size,
+                signature: file.signature,
+                width: file.width,
+                height: file.height
+            },
+            success: res => {
+                config.hideLoading();
+                var data = JSON.parse(res.data);
+                if (data.code === "000") {
+                    if (success) {
+                        success(data.data);
+                    }
+                } else {
+                    if (failure) {
+                        failure(data);
+                    }
+                }
+            },
+            fail: res => {
+                config.hideLoading();
+                if (failure) {
+                    failure(res);
+                }
+            }
+        })
     }
 }
 module.exports = config;

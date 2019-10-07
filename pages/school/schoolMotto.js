@@ -12,6 +12,7 @@ Page({
         userInfo: {},
         uploadAble: false,
         motto: null,
+        html: '',
         isEditorReturn: 0
     },
 
@@ -49,6 +50,7 @@ Page({
             api.post(isNew ? api.mottoAdd : api.mottoEdit, obj, res => {
                 that.setData({
                     motto: res.data,
+                    html: res.data.content,
                     // 新建添加完毕之后，本地缓存数据清空
                     isEditorReturn: 0
                 });
@@ -112,7 +114,8 @@ Page({
             console.log(res);
             if (null != res.data) {
                 that.setData({
-                    motto: res.data
+                    motto: res.data,
+                    html: res.data.content
                 });
             }
         });

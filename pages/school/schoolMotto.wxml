@@ -2,7 +2,7 @@
 <view class="main">
     <view class="motto-content">
         <text wx:if="{{null==motto}}">没有添加校训内容，请先添加...</text>
-        <rich-text wx:else nodes="{{motto.content}}"></rich-text>
+        <rich-text wx:else nodes="{{html}}"></rich-text>
     </view>
     <view wx:if="{{uploadAble}}">
         <view class="motto-edit" hover-class="motto-edit-hover" wx:if="{{motto==null}}" bindtap="fireToMottoEdit">
