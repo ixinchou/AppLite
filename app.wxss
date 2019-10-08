@@ -23,12 +23,12 @@ form, checkbox, swiper, button {
 
 @font-face {
     font-family: 'ixchou-font'; /* project id 1305853 */
-    src: url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.eot');
-    src: url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.eot?#iefix') format('embedded-opentype'),
-         url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.woff2') format('woff2'),
-         url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.woff') format('woff'),
-         url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.ttf') format('truetype'),
-         url('//at.alicdn.com/t/font_1305853_9a3f8fcn4n.svg#ixchou-font') format('svg');
+    src: url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.eot');
+    src: url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.woff2') format('woff2'),
+         url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.woff') format('woff'),
+         url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.svg#ixchou-font') format('svg');
 }
 
 .ixchou-font {
@@ -38,6 +38,10 @@ form, checkbox, swiper, button {
     vertical-align: middle;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.ixchou-member:before {
+    content: "\e60e";
 }
 
 .ixchou-divider:before {

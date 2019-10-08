@@ -16,13 +16,22 @@ Page({
             icon: "xingming",
             text: "您的名字",
             value: "",
+            admin: false,
             dftValue: "您的姓名"
         }, {
             id: 2,
             icon: "phone",
             text: "联系方式",
             value: "",
+            admin: false,
             dftValue: "您的联系方式"
+        }, {
+            id: 3,
+            icon: "member",
+            text: "用户管理",
+            value: "",
+            admin: true,
+            dftValue: "您可以查看用户列表"
         }],
         children: [],
         dialogShowning: false,
@@ -39,7 +48,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        var menu = this.data.menus;
+        var isAdmin = null == app.globalData.myInfo ? false : app.globalData.myInfo.uploadAble;
+        var menu = this.data.menus.filter((item) => {
+            return (isAdmin ? item.id > 0 : item.admin === false);
+        });
         menu[0].value = (null == app.globalData.myInfo ? "" : app.globalData.myInfo.userName);
         menu[1].value = (null == app.globalData.myInfo ? "" : app.globalData.myInfo.phone);
         this.setData({
