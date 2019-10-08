@@ -111,7 +111,7 @@ Page({
     fetchingMotto: function() {
         let that = this;
         api.get(api.mottoGet, null, res => {
-            console.log(res);
+            //console.log(res);
             if (null != res.data) {
                 that.setData({
                     motto: res.data,

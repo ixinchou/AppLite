@@ -1,10 +1,12 @@
 // 主域名
-var host = "http://192.168.80.173:8080"; //"https://www.ixchou.com";
+var http = "http://192.168.80.173";
+var host = `${http}:8080`; //"https://www.ixchou.com";
 
 // 配置对象
 var config = {
     POST: `POST`,
     GET: `GET`,
+    http,
     host,
 
     // 热点轮播图列表

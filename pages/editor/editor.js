@@ -137,7 +137,7 @@ Page({
         this.editorCtx.setContents({
             html: storage.get(storage.EDITOR_CONTENT),
             success: res => {
-                console.log(res);
+                //console.log(res);
             },
             fail: res => {
                 console.log(res);
@@ -218,13 +218,13 @@ Page({
                 file.checkRemoteFile({
                     signature: res.signature,
                     success: data => {
-                        that.insertUploaded("http://192.168.80.173/" + data.url);
+                        that.insertUploaded(api.http + "/" + data.url);
                     },
                     fail: () => {
                         console.log("远程服务器上不存在相同文件，需要上传");
                         api.upload(res, data => {
                             console.log(data);
-                            that.insertUploaded("http://192.168.80.173/" + data.url);
+                            that.insertUploaded(api.http + "/" + data.url);
                         }, error => {
                             console.log(error);
                         });
@@ -235,42 +235,6 @@ Page({
                 console.log(res);
             }
         });
-        // wx.chooseImage({
-        //     count: 1,
-        //     success: function(res) {
-        //         var obj = {};
-        //         // 获取文件签名和文件长度
-        //         wx.getFileInfo({
-        //             filePath: res.tempFilePaths[0],
-        //             digestAlgorithm: 'sha1',
-        //             success: res => {
-        //                 obj.size = res.size;
-        //                 obj.signature = res.digest;
-        //                 console.log(obj);
-        //                 // 获取图片的宽高信息
-        //                 wx.getImageInfo({
-        //                     src: res.tempFilePaths[0],
-        //                     success: res => {
-        //                         obj.height = res.height;
-        //                         obj.width = res.width;
-        //                         console.log(obj);
-        //                     }
-        //                 });
-        //             }
-        //         });
-        //         that.editorCtx.insertImage({
-        //             src: res.tempFilePaths[0],
-        //             data: {
-        //                 id: 'abcd',
-        //                 role: 'god'
-        //             },
-        //             width: '80%',
-        //             success: function() {
-        //                 //console.log('insert image success')
-        //             }
-        //         })
-        //     }
-        // })
     },
     insertUploaded(url) {
         console.log(url);
