@@ -94,11 +94,22 @@ Page({
     fireToPersonal: function() {
         wx.navigateTo({
             url: '/pages/person/person',
-        })
+        });
     },
+    /**
+     * 转到校训页面
+     */
     fireToMotto: function() {
         wx.navigateTo({
             url: '/pages/school/schoolMotto',
-        })
+        });
+    },
+    /**
+     * 转到特长分类页面
+     */
+    fireToSpeciality: function() {
+        wx.navigateTo({
+            url: '/pages/speciality/list/list',
+        });
     }
 })

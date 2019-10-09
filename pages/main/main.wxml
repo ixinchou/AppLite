@@ -22,7 +22,7 @@
             </view>
             <text class="menu-item-text">新筹校训</text>
         </view>
-        <view class="menu-item" hover-class="menu-item-hover">
+        <view class="menu-item" hover-class="menu-item-hover" bindtap="fireToSpeciality">
             <view class="menu-item-icon-cycle" style="background: #00F;">
                 <view class="ixchou-font ixchou-fenlei menu-item-icon"></view>
             </view>

@@ -11,11 +11,5 @@
             </view>
             <text class="motto-icon">添加校训</text>
         </view>
-        <view class="motto-edit" hover-class="motto-edit-hover" wx:else bindtap="fireToMottoEdit">
-            <view class="motto-edit-icon">
-                <icon class="ixchou-font ixchou-bianji motto-icon"></icon>
-            </view>
-            <text class="motto-icon">编辑校训</text>
-        </view>
     </view>
 </view>

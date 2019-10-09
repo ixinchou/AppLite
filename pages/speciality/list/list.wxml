@@ -1,0 +1,14 @@
+<!--pages/speciality/list/list.wxml-->
+<view class="main">
+    <view class="content">
+        <text wx:if="{{0==skills.length}}">请先添加特长内容...</text>
+    </view>
+    <view wx:if="{{uploadAble}}">
+        <view class="bottom-bar" hover-class="bottom-bar-hover" wx:if="{{motto==null}}" bindtap="fireToSpecialityEdit">
+            <view class="bottom-bar-icon-container">
+                <icon class="ixchou-font ixchou-add-fill bottom-bar-icon"></icon>
+            </view>
+            <text class="bottom-bar-icon">添加特长</text>
+        </view>
+    </view>
+</view>
