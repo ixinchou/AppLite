@@ -7,7 +7,8 @@
         "pages/school/schoolMotto",
         "pages/editor/editor",
         "pages/member/member",
-        "pages/speciality/list/list"
+        "pages/speciality/list/list",
+        "pages/speciality/edit/edit"
     ],
     "window": {
         "backgroundTextStyle": "light",

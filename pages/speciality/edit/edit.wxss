@@ -1,0 +1,23 @@
+/* pages/speciality/edit/edit.wxss */
+@import '../../common/common.wxss';
+
+.item-title {
+    font-size: 20rpx;
+    margin-bottom: 10rpx;
+}
+
+.item-inputbox {
+    background-color: #fff;
+    border-radius: 10rpx;
+    padding: 10rpx;
+}
+
+textarea {
+    width: 700rpx;
+    padding: 10rpx 0;
+}
+
+.textarea-wrp {
+    padding: 0 25rpx;
+    background-color: #fff;
+}

@@ -1,0 +1,23 @@
+<!--pages/speciality/edit/edit.wxml-->
+<view class="main">
+    <view class="content">
+        <view class="item">
+            <text class="item-title">名称</text>
+            <view class="item-inputbox">
+                <input class="weui-input" value="{{name}}" placeholder="培训技能名称" />
+            </view>
+        </view>
+        <view class="item">
+            <text class="item-title">上课时间</text>
+            <view class="item-inputbox">
+                <input class="weui-input" value="{{time}}" placeholder="上课时间" />
+            </view>
+        </view>
+        <view class="item">
+            <text class="item-title">简介</text>
+            <view class="item-inputbox">
+                <textarea style="height: 5em" value="{{description}}" placeholder="输入培训技能名称" />
+            </view>
+        </view>
+    </view>
+</view>

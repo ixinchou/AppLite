@@ -1,30 +1,28 @@
-// pages/speciality/list/list.js
-const storage = require("../../../storage.js");
-const api = require("../../../config.js");
-const app = getApp();
+// pages/speciality/edit/edit.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        uploadAble: false,
-        skills: []
+        name: '舞蹈',
+        time: '周一到周日',
+        description: '哈哈'
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        this.setData({
-            uploadAble: app.globalData.myInfo.uploadAble
-        });
+
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {},
+    onReady: function() {
+
+    },
 
     /**
      * 生命周期函数--监听页面显示
@@ -66,13 +64,5 @@ Page({
      */
     onShareAppMessage: function() {
 
-    },
-    /**
-     * 转到添加特长页
-     */
-    fireToSpecialityEdit: function() {
-        wx.navigateTo({
-            url: '/pages/speciality/edit/edit',
-        })
     }
 })
