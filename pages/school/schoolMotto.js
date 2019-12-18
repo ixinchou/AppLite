@@ -48,9 +48,8 @@ Page({
             obj.id = isNew ? 0 : this.data.motto.id;
             // 当前校训对象为空则需要添加新的，否则是更新内容
             api.post(isNew ? api.mottoAdd : api.mottoEdit, obj, res => {
+                that.resetExistMotto(res.data);
                 that.setData({
-                    motto: res.data,
-                    html: res.data.content,
                     // 新建添加完毕之后，本地缓存数据清空
                     isEditorReturn: 0
                 });
@@ -88,7 +87,12 @@ Page({
     onShareAppMessage: function() {
 
     },
-
+    resetExistMotto: function(data) {
+        this.setData({
+            motto: data,
+            html: !!data.content ? data.content.content : ""
+        });
+    },
     /**
      * 点击进入校训编辑和发布页面
      */
@@ -98,8 +102,8 @@ Page({
             isEditorReturn: 0
         });
         storage.set(storage.EDITOR_TITLE, "编辑校训内容");
-        if (null != this.data.motto) {
-            storage.set(storage.EDITOR_CONTENT, this.data.motto.content);
+        if (!!this.data.motto && !!this.data.motto.content) {
+            storage.set(storage.EDITOR_CONTENT, this.data.motto.content.content);
         }
         wx.navigateTo({
             url: '/pages/editor/editor',
@@ -113,10 +117,7 @@ Page({
         api.get(api.mottoGet, null, res => {
             //console.log(res);
             if (null != res.data) {
-                that.setData({
-                    motto: res.data,
-                    html: res.data.content
-                });
+                that.resetExistMotto(res.data);
             }
         });
     }
