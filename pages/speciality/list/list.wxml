@@ -1,7 +1,7 @@
 <!--pages/speciality/list/list.wxml-->
 <view class="main">
     <view class="content">
-        <text wx:if="{{0==skills.length}}">请先添加内容...</text>
+        <text wx:if="{{0==skills.length}}">请先添加特长分类...</text>
     </view>
     <view wx:if="{{uploadAble}}">
         <view class="bottom-bar" hover-class="bottom-bar-hover" wx:if="{{motto==null}}" bindtap="fireToSpecialityEdit">

@@ -1,4 +1,8 @@
 // pages/speciality/edit/edit.js
+
+var file = require('../../../file.js');
+var api = require('../../../config.js');
+
 Page({
 
     /**
@@ -7,7 +11,8 @@ Page({
     data: {
         name: '舞蹈',
         time: '周一到周日',
-        description: '哈哈'
+        description: '哈哈',
+        image_src: ''
     },
 
     /**
@@ -64,5 +69,37 @@ Page({
      */
     onShareAppMessage: function() {
 
+    },
+    chooseImage: function() {
+        const that = this;
+        file.choose({
+            type: 'image',
+            count: 1,
+            success: res => {
+                console.log(res);
+                that.setData({
+                    image_src: res.path
+                })
+                // 文件选择成功，查询远程服务器上是否有相同记录
+                file.checkRemoteFile({
+                    signature: res.signature,
+                    success: data => {
+                        that.insertUploaded(api.http + "/" + data.url);
+                    },
+                    fail: () => {
+                        console.log("远程服务器上不存在相同文件，需要上传");
+                        api.upload(res, data => {
+                            console.log(data);
+                            //that.insertUploaded(api.http + "/" + data.url);
+                        }, error => {
+                            console.log(error);
+                        });
+                    }
+                });
+            },
+            fail: res => {
+                console.log(res);
+            }
+        });
     }
 })

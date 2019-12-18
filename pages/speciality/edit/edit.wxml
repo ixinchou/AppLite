@@ -14,8 +14,18 @@
             </view>
         </view>
         <view class="item">
+            <text class="item-title">封面图</text>
+            <view class="item-inputbox item-cover">
+                <view class="image-preview">
+                    <button class="ixchou-font ixchou-jia icon-add" hover-class="icon-add-hover" bindtap="chooseImage"></button>
+                </view>
+                <image class="image" src="{{image_src}}"></image>
+            </view>
+        </view>
+        <view class="item">
             <text class="item-title">简介</text>
             <view class="item-inputbox">
+                <rich-text nodes="{{html}}"></rich-text>
                 <textarea style="height: 5em" value="{{description}}" placeholder="输入培训技能名称" />
             </view>
         </view>

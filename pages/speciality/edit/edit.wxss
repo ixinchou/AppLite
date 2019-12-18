@@ -12,6 +12,42 @@
     padding: 10rpx;
 }
 
+.item-cover {
+    display: flex;
+    flex-direction: row;
+}
+
+.image-preview {
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-add {
+    color: #24c903;
+    width: 100rpx;
+    height: 100rpx;
+    margin-right: 10rpx;
+    font-size: 40rpx;
+    background: #fff;
+}
+
+.icon-add::after {
+    border: none;
+    background-color: transparent;
+}
+
+.icon-add-hover {
+    color: #f00;
+    background: #f7f7f7;
+}
+
+.image {
+    width: 100rpx;
+    height: 100rpx;
+    background: #f7f7f7;
+    border-radius: 10rpx;
+}
+
 textarea {
     width: 700rpx;
     padding: 10rpx 0;

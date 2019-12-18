@@ -23,12 +23,12 @@ form, checkbox, swiper, button {
 
 @font-face {
     font-family: 'ixchou-font'; /* project id 1305853 */
-    src: url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.eot');
-    src: url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.eot?#iefix') format('embedded-opentype'),
-         url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.woff2') format('woff2'),
-         url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.woff') format('woff'),
-         url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.ttf') format('truetype'),
-         url('//at.alicdn.com/t/font_1305853_wpwdpyalkmh.svg#ixchou-font') format('svg');
+    src: url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.eot');
+    src: url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.woff2') format('woff2'),
+         url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.woff') format('woff'),
+         url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.svg#ixchou-font') format('svg');
 }
 
 .ixchou-font {
@@ -40,114 +40,122 @@ form, checkbox, swiper, button {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.ixchou-member:before {
-    content: "\e60e";
-}
-
-.ixchou-divider:before {
-    content: "\e618";
-}
-
 .ixchou-children:before {
-    content: "\e616";
+  content: "\e616";
 }
 
 .ixchou-nanhai:before {
-    content: "\e60a";
-}
-
-.ixchou-fenlei:before {
-    content: "\e628";
-}
-
-.ixchou-unordered:before {
-    content: "\e64a";
-}
-
-.ixchou-ordered:before {
-    content: "\e862";
-}
-
-.ixchou-jianjie:before {
-    content: "\e641";
+  content: "\e60a";
 }
 
 .ixchou-image:before {
-    content: "\e62a";
+  content: "\e62a";
+}
+
+.ixchou-fenlei:before {
+  content: "\e628";
+}
+
+.ixchou-unordered:before {
+  content: "\e64a";
+}
+
+.ixchou-ordered:before {
+  content: "\e862";
+}
+
+.ixchou-jianjie:before {
+  content: "\e641";
 }
 
 .ixchou-fengcai:before {
-    content: "\e6bc";
+  content: "\e6bc";
 }
 
 .ixchou-fengcai-hollow:before {
-    content: "\e6c4";
+  content: "\e6c4";
+}
+
+.ixchou-image-solid:before {
+  content: "\e6f0";
 }
 
 .ixchou-meishu:before {
-    content: "\e609";
+  content: "\e609";
 }
 
 .ixchou-nvhai:before {
-    content: "\e600";
+  content: "\e600";
 }
 
 .ixchou-bold:before {
-    content: "\e637";
+  content: "\e637";
 }
 
 .ixchou-h2:before {
-    content: "\e65e";
+  content: "\e65e";
 }
 
 .ixchou-h3:before {
-    content: "\e65f";
+  content: "\e65f";
 }
 
 .ixchou-younao:before {
-    content: "\e605";
+  content: "\e605";
 }
 
 .ixchou-huazhuangshi:before {
-    content: "\e632";
+  content: "\e632";
 }
 
 .ixchou-phone:before {
-    content: "\e60c";
+  content: "\e60c";
 }
 
 .ixchou-wudao:before {
-    content: "\e643";
+  content: "\e643";
 }
 
 .ixchou-zhuchiren:before {
-    content: "\e76b";
+  content: "\e76b";
 }
 
 .ixchou-underline:before {
-    content: "\e674";
+  content: "\e674";
 }
 
 .ixchou-xingming:before {
-    content: "\e61f";
+  content: "\e61f";
+}
+
+.ixchou-jia:before {
+  content: "\e61b";
 }
 
 .ixchou-you:before {
-    content: "\e627";
+  content: "\e627";
+}
+
+.ixchou-member:before {
+  content: "\e60e";
+}
+
+.ixchou-divider:before {
+  content: "\e618";
 }
 
 .ixchou-italic:before {
-    content: "\e670";
+  content: "\e670";
 }
 
 .ixchou-bianji:before {
-    content: "\e866";
+  content: "\e866";
 }
 
 .ixchou-add-fill:before {
-    content: "\e6ab";
+  content: "\e6ab";
 }
 
 .ixchou-add:before {
-    content: "\e6ac";
+  content: "\e6ac";
 }
