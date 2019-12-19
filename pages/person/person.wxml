@@ -27,7 +27,7 @@
                 <icon class="ixchou-font ixchou-children icon-left"></icon>
                 <text class="menu-item-text">孩子的信息</text>
                 <text class="menus-item-value"></text>
-                <button class="ixchou-font ixchou-add-fill icon-add" hover-class="icon-add-hover" style="font-size: 40rpx; width: 100rpx; height: 100rpx; text-align: center;" bindtap="openChildBindDialog"></button>
+                <button class="ixchou-font ixchou-add-fill icon-add" hover-class="icon-add-hover" bindtap="openChildBindDialog"></button>
             </view>
             <view wx:if="{{children.length>0}}">
                 <view class="children-title" style="margin-bottom: 10rpx;">

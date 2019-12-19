@@ -19,6 +19,10 @@ var storage = {
      */
     EDITOR_CONTENT: `ixchou_editor_content`,
     /**
+     * 本地缓存的课程id
+     */
+    COURSE_ID: `ixchou_course_id`,
+    /**
      * 获取本地存储的内容
      */
     get: function(key) {

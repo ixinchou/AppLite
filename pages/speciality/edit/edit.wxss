@@ -1,5 +1,6 @@
 /* pages/speciality/edit/edit.wxss */
 @import '../../common/common.wxss';
+@import '../../../weui.wxss';
 
 .item-title {
     font-size: 20rpx;
@@ -9,7 +10,16 @@
 .item-inputbox {
     background-color: #fff;
     border-radius: 10rpx;
-    padding: 10rpx;
+    padding: 10px;
+}
+
+.placeholder {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.money {
+    color: orange;
+    margin-right: 2px;
 }
 
 .item-cover {
@@ -20,15 +30,15 @@
 .image-preview {
     align-items: center;
     justify-content: center;
+    margin-right: 10rpx;
 }
 
 .icon-add {
     color: #24c903;
-    width: 100rpx;
-    height: 100rpx;
-    margin-right: 10rpx;
-    font-size: 40rpx;
+    font-size: 60rpx;
     background: #fff;
+    width: 150rpx;
+    height: 150rpx;
 }
 
 .icon-add::after {
@@ -41,19 +51,66 @@
     background: #f7f7f7;
 }
 
+.icon-add-1 {
+    color: #24c903;
+    font-size: 35rpx;
+    margin-left: 2px;
+    background: transparent;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    margin-top: -30rpx;
+    padding-bottom: 5px;
+}
+
+.icon-add-1::after {
+    border: none;
+    background-color: transparent;
+}
+
+.icon-add-1-hover {
+    color: #f00;
+    background: transparent;
+}
+
 .image {
-    width: 100rpx;
-    height: 100rpx;
+    width: 150rpx;
+    height: 150rpx;
     background: #f7f7f7;
     border-radius: 10rpx;
 }
 
 textarea {
     width: 700rpx;
-    padding: 10rpx 0;
+    padding: 10px 0;
 }
 
 .textarea-wrp {
     padding: 0 25rpx;
     background-color: #fff;
+}
+
+.bottom-bar {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100rpx;
+    background-color: rgba(240, 240, 240, 0.7);
+}
+
+.bottom-bar-hover {
+    background-color: #f0f0f0;
+}
+
+.bottom-bar-icon-container {
+    margin-right: 10rpx;
+}
+
+.bottom-bar-icon {
+    line-height: 100rpx;
+    color: #0151b9;
 }

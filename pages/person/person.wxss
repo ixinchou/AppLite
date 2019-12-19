@@ -110,6 +110,10 @@ page {
 .icon-add {
     color: #24c903;
     background-color: transparent;
+    font-size: 40rpx;
+    width: 100rpx;
+    height: 100rpx;
+    text-align: center;
 }
 
 .icon-add::after {

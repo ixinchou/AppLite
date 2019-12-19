@@ -2,6 +2,7 @@
 const storage = require("../../storage.js");
 const api = require("../../config.js");
 const app = getApp();
+const editor = require('../../editor.js');
 
 Page({
 
@@ -48,6 +49,7 @@ Page({
             obj.id = isNew ? 0 : this.data.motto.id;
             // 当前校训对象为空则需要添加新的，否则是更新内容
             api.post(isNew ? api.mottoAdd : api.mottoEdit, obj, res => {
+                editor.clearEditorContent();
                 that.resetExistMotto(res.data);
                 that.setData({
                     // 新建添加完毕之后，本地缓存数据清空
@@ -101,13 +103,7 @@ Page({
         this.setData({
             isEditorReturn: 0
         });
-        storage.set(storage.EDITOR_TITLE, "编辑校训内容");
-        if (!!this.data.motto && !!this.data.motto.content) {
-            storage.set(storage.EDITOR_CONTENT, this.data.motto.content.content);
-        }
-        wx.navigateTo({
-            url: '/pages/editor/editor',
-        })
+        editor.goingToEditor("编辑校训内容", this.data.html);
     },
     /**
      * 拉取校训内容

@@ -1,4 +1,4 @@
-/* pages/speciality/list/list.wxss */
+/* pages/speciality/preview/preview.wxss */
 @import '../../../weui.wxss';
 
 page {

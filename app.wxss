@@ -23,12 +23,12 @@ form, checkbox, swiper, button {
 
 @font-face {
     font-family: 'ixchou-font'; /* project id 1305853 */
-    src: url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.eot');
-    src: url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.eot?#iefix') format('embedded-opentype'),
-         url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.woff2') format('woff2'),
-         url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.woff') format('woff'),
-         url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.ttf') format('truetype'),
-         url('//at.alicdn.com/t/font_1305853_u9zjdlydvha.svg#ixchou-font') format('svg');
+    src: url('//at.alicdn.com/t/font_1305853_ri9lyxycppc.eot');
+    src: url('//at.alicdn.com/t/font_1305853_ri9lyxycppc.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_1305853_ri9lyxycppc.woff2') format('woff2'),
+         url('//at.alicdn.com/t/font_1305853_ri9lyxycppc.woff') format('woff'),
+         url('//at.alicdn.com/t/font_1305853_ri9lyxycppc.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_1305853_ri9lyxycppc.svg#ixchou-font') format('svg');
 }
 
 .ixchou-font {
@@ -50,6 +50,10 @@ form, checkbox, swiper, button {
 
 .ixchou-image:before {
   content: "\e62a";
+}
+
+.ixchou-save:before {
+  content: "\e748";
 }
 
 .ixchou-fenlei:before {
@@ -78,6 +82,10 @@ form, checkbox, swiper, button {
 
 .ixchou-image-solid:before {
   content: "\e6f0";
+}
+
+.ixchou-rmb:before {
+  content: "\e6eb";
 }
 
 .ixchou-meishu:before {

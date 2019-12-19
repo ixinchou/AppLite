@@ -52,6 +52,18 @@ var config = {
      * 上传文件
      */
     fileUpload: `${host}/api/attachment/upload`,
+    /**
+     * 富文本内容添加
+     */
+    contentAdd: `${host}/api/content/add`,
+    /**
+     * 富文本内容编辑
+     */
+    contentEdit: `${host}/api/content/update`,
+    /**
+     * 拉取课程列表
+     */
+    courseList: `${host}/api/course/list`,
 
     // 显示加载中界面
     showLoading: function(title) {
@@ -74,7 +86,20 @@ var config = {
             duration: 2000
         });
     },
-
+    // 判断对象是否为null
+    isEmpty: function(obj) {
+        if (null == obj) {
+            return true;
+        }
+        let type = typeof(obj);
+        if ("undefined" === type) {
+            return true;
+        }
+        if ("string" === type) {
+            return obj.length <= 0;
+        }
+        return false;
+    },
     // 拉取远程服务器上的数据
     fetchingData: function(url, params, usedMethod, callback) {
         config.showLoading("加载数据，请稍候...");

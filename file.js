@@ -3,6 +3,7 @@ var file = {
     option: {
         type: 'image', // 文件选择类型，可选为 image/video
         count: 1,
+        uploadable: false,// 是否直接上传
         success: null,
         fail: null
     },

@@ -1,33 +1,40 @@
-// pages/speciality/list/list.js
-const storage = require("../../../storage.js");
-const api = require("../../../config.js");
+// pages/speciality/preview/preview.js
 const app = getApp();
+const api = require("../../../config.js");
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        uploadAble: false,
-        skills: [],
-        http: ''
+        item: null,
+        cover: null,
+        content: null
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        let data = options.data;
+        var obj = null;
+        if (!api.isEmpty(data)) {
+            obj = JSON.parse(options.data);
+        }
         this.setData({
-            http: api.http + "/",
-            uploadAble: app.globalData.myInfo.uploadAble
+            uploadAble: app.globalData.myInfo.uploadAble,
+            item: obj,
+            cover: obj.cover,
+            content: obj.content
         });
-        this.fetchingCourses();
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {},
+    onReady: function() {
+
+    },
 
     /**
      * 生命周期函数--监听页面显示
@@ -70,31 +77,13 @@ Page({
     onShareAppMessage: function() {
 
     },
-    onItemClick: function(item) {
-        //console.log(item.currentTarget.dataset.item);
-        // 转到详情页
-        let json = JSON.stringify(item.currentTarget.dataset.item);
-        wx.navigateTo({
-            url: '/pages/speciality/preview/preview?data=' + json,
-        });
-    },
-    fetchingCourses: function() {
-        let that = this;
-        api.get(api.courseList, {
-            pageIndex: 1,
-            pageSize: 10
-        }, res => {
-            that.setData({
-                skills: res.data.list
-            });
-        });
-    },
     /**
      * 转到添加编辑页
      */
     fireToSpecialityEdit: function() {
+        let json = JSON.stringify(this.data.item);
         wx.navigateTo({
-            url: '/pages/speciality/edit/edit?data=',
+            url: '/pages/speciality/edit/edit?data=' + json,
         });
     }
 })

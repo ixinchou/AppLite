@@ -8,9 +8,28 @@
             </view>
         </view>
         <view class="item">
+            <text class="item-title">学期类型</text>
+            <view class="item-inputbox">
+                <view class="weui-flex">
+                    <view class="weui-flex__item">
+                        <picker bindchange="bindClassTypePickerChange" value="{{classTypes[classIndex]}}" range="{{classTypes}}">
+                            <view class="weui-input">{{classTypes[classIndex]}}</view>
+                        </picker>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="item">
+            <text class="item-title">学费</text>
+            <view class="item-inputbox item-cover">
+                <text class="money">￥</text>
+                <input class="weui-input" value="{{classFee}}" placeholder="填写学费" />
+            </view>
+        </view>
+        <view class="item">
             <text class="item-title">上课时间</text>
             <view class="item-inputbox">
-                <input class="weui-input" value="{{time}}" placeholder="上课时间" />
+                <input class="weui-input" value="{{time}}" placeholder="填写上课时间" />
             </view>
         </view>
         <view class="item">
@@ -25,9 +44,23 @@
         <view class="item">
             <text class="item-title">简介</text>
             <view class="item-inputbox">
-                <rich-text nodes="{{html}}"></rich-text>
-                <textarea style="height: 5em" value="{{description}}" placeholder="输入培训技能名称" />
+                <view class="weui-flex">
+                    <view class="weui-flex__item">
+                        <text wx:if="{{uploadAble&&''==html}}" class="placeholder">点击右侧按钮添加简介</text>
+                        <text wx:if="{{!uploadAble&&''==html}}" class="placeholder">还没有添加简介</text>
+                        <rich-text nodes="{{html}}"></rich-text>
+                    </view>
+                    <view wx:if="{{uploadAble}}">
+                        <button class="ixchou-font ixchou-add-fill icon-add-1" hover-class="icon-add-1-hover" bindtap="fireToContent" />
+                    </view>
+                </view>
             </view>
         </view>
+    </view>
+    <view class="bottom-bar" hover-class="bottom-bar-hover" bindtap="fireToSave" wx:if="{{uploadAble}}">
+        <view class="bottom-bar-icon-container">
+            <icon class="ixchou-font ixchou-save bottom-bar-icon"></icon>
+        </view>
+        <text class="bottom-bar-icon">保存</text>
     </view>
 </view>
