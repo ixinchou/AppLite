@@ -1,7 +1,7 @@
 <!--pages/speciality/preview/preview.wxml-->
 <!--pages/speciality/list/list.wxml-->
 <view class="main">
-    <view class="content">
+    <view class="content" style="margin-bottom: 100rpx;">
         <text wx:if="{{0==skills.length}}">请先添加特长分类...</text>
         <view class="weui-panel weui-panel_access">
             <view class="weui-panel__bd">
@@ -16,8 +16,8 @@
                     </view>
                 </view>
                 <view class="fee">
-                    <text class="money">报名费￥</text>
-                    <text class="money">{{fee}}</text>
+                    <text class="money">{{time}}报名费</text>
+                    <text class="money">￥{{fee}}</text>
                 </view>
                 <rich-text nodes="{{html}}" class="content"></rich-text>
             </view>

@@ -1,10 +1,6 @@
 // pages/speciality/edit/edit.js
 
-const storage = require("../../../storage.js");
-var file = require('../../../file.js');
-var api = require('../../../config.js');
-var editor = require('../../../editor.js');
-const app = getApp();
+const app = getApp().globalData;
 
 Page({
 
@@ -12,14 +8,14 @@ Page({
      * 页面的初始数据
      */
     data: {
-        http: api.http + "/",
+        http: app.api.http + "/",
         uploadAble: false,
         course: null,
         content: null,
         cover: null,
         name: '',
         time: '',
-        classTypes: ['整年期', '半年期', '季度期', '月期', '周期'],
+        classTypes: [],
         classIndex: 0,
         classFee: 0,
         image_src: '',
@@ -33,36 +29,54 @@ Page({
     onLoad: function(options) {
         let data = options.data;
         var obj = null;
-        if (!api.isEmpty(data)) {
+        if (!app.api.isEmpty(data)) {
             obj = JSON.parse(options.data);
         }
         this.setData({
-            uploadAble: app.globalData.myInfo.uploadAble,
+            uploadAble: app.myInfo.uploadAble,
             course: obj,
             content: !!obj ? obj.content : null,
             cover: !!obj ? obj.cover : null,
         });
         this.retriveCourse();
+        this.fetchingClassTypes();
+    },
+    fetchingClassTypes: function() {
+        let that = this;
+        app.api.get(app.api.termList, null, res => {
+            that.setData({
+                classTypes: res.data.list
+            });
+            if(!!that.data.course){
+                that.setData({
+                    classIndex: that.getTermIndex(that.data.course.classType)
+                });
+            }
+        });
     },
     retriveCourse: function() {
         let obj = this.data.course;
+        if (null == obj) {
+            return;
+        }
         this.setData({
             name: !!obj ? obj.name : '',
-            classIndex: this.getIndexOfClassType(!!obj ? obj.classType : ''),
+            classIndex: !!obj ? this.getTermIndex(obj.classType) : 0,
             time: !!obj ? obj.classTime : '',
-            classFee: !!obj ? obj.fee : 0,
+            classFee: !!obj ? (obj.fee / 100) : 0,
             html: !!this.data.content ? this.data.content.content : '',
             image_src: !!this.data.cover ? (this.data.http + this.data.cover.url) : ''
         });
     },
-    getIndexOfClassType: function(type) {
-        let idx = -1;
+    getTermIndex: function(tid) {
+        let val = 0;
         this.data.classTypes.forEach((item, index) => {
-            if (item === type) {
-                idx = index;
+            if (item.id == tid) {
+                val = index;
+                return;
             }
         });
-        return idx;
+        return val;
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -119,7 +133,7 @@ Page({
     },
     chooseImage: function() {
         const that = this;
-        file.choose({
+        app.file.choose({
             type: 'image',
             count: 1,
             success: res => {
@@ -128,22 +142,22 @@ Page({
                     image_src: res.path
                 })
                 // 文件选择成功，查询远程服务器上是否有相同记录
-                file.checkRemoteFile({
+                app.file.checkRemoteFile({
                     signature: res.signature,
                     success: data => {
                         console.log("远程服务器上存在相同文件可以直接使用，不需要上传");
                         that.setData({
                             cover: data,
-                            image_src: api.http + "/" + data.url
+                            image_src: this.data.http + data.url
                         });
                     },
                     fail: () => {
                         console.log("远程服务器上不存在相同文件，需要上传");
-                        api.upload(res, data => {
+                        app.api.upload(res, data => {
                             console.log(data);
                             that.setData({
                                 cover: data,
-                                image_src: api.http + "/" + data.url
+                                image_src: this.data.http + data.url
                             });
                         }, error => {
                             console.log(error);
@@ -162,34 +176,55 @@ Page({
         });
     },
     bindInput: function(e) {
-        this.setData({
-            classFee: parseInt(e.detail.value)
-        });
+        var id = e.currentTarget.id;
+        var value = e.detail.value;
+        switch (id) {
+            case "name":
+                this.setData({
+                    name: value
+                });
+                break;
+            case "fee":
+                this.setData({
+                    classFee: parseInt(value)
+                });
+                break;
+            case "time":
+                this.setData({
+                    time: value
+                });
+                break;
+        }
     },
     fireToContent: function() {
         // 设置当前准备接受编辑器传回的内容
         this.setData({
             isEditorReturn: 0
         });
-        editor.goingToEditor("课程简介", (!!this.data.content ? this.data.content.id : 0), this.data.html);
+        app.editor.goingToEditor("课程简介", (!!this.data.content ? this.data.content.id : 0), this.data.html);
     },
     fireToSave: function() {
-        console.log(this.data)
-        let isNew = !!this.course ? false : true;
-        api.post(isNew ? api.courseAdd : api.courseEdit, {
+        if (app.api.isEmpty(this.data.name)) {
+            app.api.toast("名称不能为空", "none");
+            return;
+        }
+        let isNew = !!this.data.course ? false : true;
+        app.api.post(isNew ? app.api.courseAdd : app.api.courseEdit, {
             id: !!this.data.course ? this.data.course.id : 0,
             name: this.data.name,
             cover: !!this.data.cover ? this.data.cover.id : 0,
-            classType: this.data.classTypes[this.data.classIndex],
+            classType: this.data.classTypes[this.data.classIndex].id,
             classTime: this.data.time,
-            classFee: this.data.classFee,
+            classFee: this.data.classFee * 100,
             content: !!this.data.content ? this.data.content.id : 0
         }, res => {
-            console.log(res)
-            // 返回上一页
-            wx.navigateBack({
-                delta: 1
+            // 设置上一页的内容
+            app.page.setPreviousData({
+                item: res.data,
+                isEditorReturn: 1
             });
+            // 返回上一页
+            app.page.back();
         });
     }
 })

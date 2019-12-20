@@ -4,7 +4,7 @@
         <view class="item">
             <text class="item-title">名称</text>
             <view class="item-inputbox">
-                <input class="weui-input" value="{{name}}" placeholder="培训技能名称" />
+                <input class="weui-input" value="{{name}}" bindinput="bindInput" id="name" placeholder="培训技能名称" />
             </view>
         </view>
         <view class="item">
@@ -12,8 +12,8 @@
             <view class="item-inputbox">
                 <view class="weui-flex">
                     <view class="weui-flex__item">
-                        <picker bindchange="bindClassTypePickerChange" value="{{classTypes[classIndex]}}" range="{{classTypes}}">
-                            <view class="weui-input">{{classTypes[classIndex]}}</view>
+                        <picker bindchange="bindClassTypePickerChange" value="{{classIndex}}" range="{{classTypes}}" range-key="{{'name'}}">
+                            <view class="weui-input">{{classTypes[classIndex].name}}</view>
                         </picker>
                     </view>
                 </view>
@@ -23,13 +23,13 @@
             <text class="item-title">学费</text>
             <view class="item-inputbox item-cover">
                 <text class="money">￥</text>
-                <input class="weui-input" value="{{classFee}}" bindinput="bindInput" type="number" placeholder="填写学费" />
+                <input class="weui-input" value="{{classFee}}" bindinput="bindInput" id="fee" type="number" placeholder="填写学费" />
             </view>
         </view>
         <view class="item">
             <text class="item-title">上课时间</text>
             <view class="item-inputbox">
-                <input class="weui-input" value="{{time}}" placeholder="填写上课时间" />
+                <input class="weui-input" value="{{time}}" bindinput="bindInput" id="time" placeholder="填写上课时间" />
             </view>
         </view>
         <view class="item">

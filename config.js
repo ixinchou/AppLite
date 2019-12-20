@@ -1,5 +1,5 @@
 // 主域名
-var http = "http://192.168.80.173";
+var http = "http://10.141.130.4";
 var host = `${http}:8082`; //"https://edu.ixchou.com";
 
 // 配置对象
@@ -68,6 +68,8 @@ var config = {
     courseAdd: `${host}/api/course/add`,
     /**课程编辑 */
     courseEdit: `${host}/api/course/update`,
+    /**课程学期类型 */
+    termList: `${host}/api/term/list`,
 
     // 显示加载中界面
     showLoading: function(title) {
