@@ -23,7 +23,7 @@
             <text class="item-title">学费</text>
             <view class="item-inputbox item-cover">
                 <text class="money">￥</text>
-                <input class="weui-input" value="{{classFee}}" placeholder="填写学费" />
+                <input class="weui-input" value="{{classFee}}" bindinput="bindInput" type="number" placeholder="填写学费" />
             </view>
         </view>
         <view class="item">

@@ -7,9 +7,12 @@ Page({
      * 页面的初始数据
      */
     data: {
+        http: '',
         item: null,
         cover: null,
-        content: null
+        content: null,
+        fee: 0.00,
+        html: '<p>来呀快活呀反正有大把时光</p>'
     },
 
     /**
@@ -22,10 +25,15 @@ Page({
             obj = JSON.parse(options.data);
         }
         this.setData({
+            http: api.http + '/',
             uploadAble: app.globalData.myInfo.uploadAble,
             item: obj,
             cover: obj.cover,
-            content: obj.content
+            content: obj.content,
+            fee: ((!!obj.classFee ? obj.classFee : 0) / 100).toFixed(2)
+        });
+        wx.setNavigationBarTitle({
+            title: obj.name
         });
     },
 
@@ -77,6 +85,10 @@ Page({
     onShareAppMessage: function() {
 
     },
+    /**预览封面图 */
+    previewCover: function() {
+
+    },
     /**
      * 转到添加编辑页
      */
@@ -85,5 +97,11 @@ Page({
         wx.navigateTo({
             url: '/pages/speciality/edit/edit?data=' + json,
         });
+    },
+    /**
+     * 报名
+     */
+    fireToApply: function() {
+
     }
 })

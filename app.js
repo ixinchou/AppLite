@@ -1,6 +1,9 @@
 //app.js
-const config = require("config.js");
+const api = require("config.js");
 const storage = require("storage.js");
+const editor = require("editor.js");
+const file = require("file.js");
+const page = require("page.js");
 
 App({
     onLaunch: function() {
@@ -38,7 +41,7 @@ App({
     fetchingDetails: function(session) {
         var that = this;
         // 拉取服务器上的用户信息
-        config.get(config.findMemberBySessionId + session, null, function(res) {
+        api.get(api.findMemberBySessionId + session, null, function(res) {
             // 缓存我的信息
             that.globalData.myInfo = res.data;
             // 缓存是否具有管理员属性
@@ -46,6 +49,11 @@ App({
         });
     },
     globalData: {
+        api: api,
+        storage: storage,
+        editor: editor,
+        file: file,
+        page: page,
         userInfo: null,
         hasSession: false,
         myInfo: null,
@@ -66,7 +74,7 @@ App({
                     obj.loginCode = login_code;
                     obj.nickName = this.globalData.userInfo.nickName;
                     obj.gender = this.globalData.userInfo.gender;
-                    config.post(config.wxInfo, obj, function(res) {
+                    api.post(api.wxInfo, obj, function(res) {
                         console.log(res);
                         // 本地保存服务器生成的sessionId
                         storage.set(storage.IXCHOU_SESSION, res.data.sessionId);

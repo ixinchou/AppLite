@@ -18,6 +18,8 @@ var storage = {
      * 编辑器内容
      */
     EDITOR_CONTENT: `ixchou_editor_content`,
+    /**编辑器编辑对象id */
+    EDITOR_ID: `ixchou_editor_id`,
     /**
      * 本地缓存的课程id
      */

@@ -1,8 +1,5 @@
 // pages/school/schoolMotto.js
-const storage = require("../../storage.js");
-const api = require("../../config.js");
-const app = getApp();
-const editor = require('../../editor.js');
+const app = getApp().globalData;
 
 Page({
 
@@ -13,6 +10,7 @@ Page({
         userInfo: {},
         uploadAble: false,
         motto: null,
+        content: null,
         html: '',
         isEditorReturn: 0
     },
@@ -22,8 +20,8 @@ Page({
      */
     onLoad: function(options) {
         this.setData({
-            userInfo: app.globalData.userInfo,
-            uploadAble: app.globalData.myInfo.uploadAble
+            userInfo: app.userInfo,
+            uploadAble: app.myInfo.uploadAble
         });
         // 页面加载的时候拉取一次校训内容
         this.fetchingMotto();
@@ -39,22 +37,11 @@ Page({
      */
     onShow: function() {
         if (this.data.isEditorReturn > 0) {
-            // 编辑器返回，则需要先提交编辑器中的内容到服务器上，然后再拉取服务器中的内容并显示
-            let that = this;
-            // 新建
-            var obj = {};
-            obj.sessionId = storage.get(storage.IXCHOU_SESSION);
-            obj.content = storage.get(storage.EDITOR_CONTENT);
-            var isNew = null == this.data.motto;
-            obj.id = isNew ? 0 : this.data.motto.id;
-            // 当前校训对象为空则需要添加新的，否则是更新内容
-            api.post(isNew ? api.mottoAdd : api.mottoEdit, obj, res => {
-                editor.clearEditorContent();
-                that.resetExistMotto(res.data);
-                that.setData({
-                    // 新建添加完毕之后，本地缓存数据清空
-                    isEditorReturn: 0
-                });
+            // 编辑器返回，则重新显示编辑器返回的内容
+            this.setData({
+                html: !!this.data.content ? this.data.content.content : "",
+                // 新建添加完毕之后，本地缓存数据清空
+                isEditorReturn: 0
             });
         }
     },
@@ -92,6 +79,7 @@ Page({
     resetExistMotto: function(data) {
         this.setData({
             motto: data,
+            content: data.content,
             html: !!data.content ? data.content.content : ""
         });
     },
@@ -103,14 +91,15 @@ Page({
         this.setData({
             isEditorReturn: 0
         });
-        editor.goingToEditor("编辑校训内容", this.data.html);
+        let data = this.data.content;
+        app.editor.goingToEditor("编辑校训内容", !!data ? data.id : 0, this.data.html);
     },
     /**
      * 拉取校训内容
      */
     fetchingMotto: function() {
         let that = this;
-        api.get(api.mottoGet, null, res => {
+        app.api.get(app.api.mottoGet, null, res => {
             //console.log(res);
             if (null != res.data) {
                 that.resetExistMotto(res.data);

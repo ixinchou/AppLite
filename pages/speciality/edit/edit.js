@@ -12,6 +12,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        http: api.http + "/",
         uploadAble: false,
         course: null,
         content: null,
@@ -40,15 +41,22 @@ Page({
             course: obj,
             content: !!obj ? obj.content : null,
             cover: !!obj ? obj.cover : null,
+        });
+        this.retriveCourse();
+    },
+    retriveCourse: function() {
+        let obj = this.data.course;
+        this.setData({
             name: !!obj ? obj.name : '',
             classIndex: this.getIndexOfClassType(!!obj ? obj.classType : ''),
             time: !!obj ? obj.classTime : '',
-            html: (!!obj && !!obj.content) ? obj.content.content : '',
-            image_src: (!!obj && !!obj.cover) ? (api.http + "/" + obj.cover.url) : ''
+            classFee: !!obj ? obj.fee : 0,
+            html: !!this.data.content ? this.data.content.content : '',
+            image_src: !!this.data.cover ? (this.data.http + this.data.cover.url) : ''
         });
     },
     getIndexOfClassType: function(type) {
-        let idx = 0;
+        let idx = -1;
         this.data.classTypes.forEach((item, index) => {
             if (item === type) {
                 idx = index;
@@ -69,7 +77,8 @@ Page({
     onShow: function() {
         if (this.data.isEditorReturn > 0) {
             this.setData({
-                html: storage.get(storage.EDITOR_CONTENT)
+                isEditorReturn: 0,
+                html: !!this.data.content ? this.data.content.content : '',
             });
         }
     },
@@ -152,27 +161,35 @@ Page({
             classIndex: e.detail.value
         });
     },
+    bindInput: function(e) {
+        this.setData({
+            classFee: parseInt(e.detail.value)
+        });
+    },
     fireToContent: function() {
         // 设置当前准备接受编辑器传回的内容
         this.setData({
             isEditorReturn: 0
         });
-        editor.goingToEditor("课程简介", this.data.html);
+        editor.goingToEditor("课程简介", (!!this.data.content ? this.data.content.id : 0), this.data.html);
     },
     fireToSave: function() {
-        let courseId = 0;
-        // 保存课程之前先保存内容
-        let obj = {};
-        // 图文内容
-        obj.content = this.data.html;
-        // 课程简介
-        obj.type = 2;
-        if (!!this.data.content) {
-            obj.id = this.data.content.id;
-        }
-        let isNew = !!this.data.content ? false : true;
-        api.post(isNew ? api.contentAdd : api.contentEdit, obj, res => {
-            //courseId = res.data.id;
+        console.log(this.data)
+        let isNew = !!this.course ? false : true;
+        api.post(isNew ? api.courseAdd : api.courseEdit, {
+            id: !!this.data.course ? this.data.course.id : 0,
+            name: this.data.name,
+            cover: !!this.data.cover ? this.data.cover.id : 0,
+            classType: this.data.classTypes[this.data.classIndex],
+            classTime: this.data.time,
+            classFee: this.data.classFee,
+            content: !!this.data.content ? this.data.content.id : 0
+        }, res => {
+            console.log(res)
+            // 返回上一页
+            wx.navigateBack({
+                delta: 1
+            });
         });
     }
 })

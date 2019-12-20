@@ -1,14 +1,12 @@
 // pages/editor/editor.js
-const storage = require("../../storage.js");
-var sMD5 = require('../../utils/spark-md5.js');
-var file = require('../../file.js');
-var api = require('../../config.js');
+const app = getApp().globalData;
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        content: null,
         formats: {},
         readOnly: false,
         placeholder: '开始输入...',
@@ -21,6 +19,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        this.setData({
+            content: app.editor.getContent()
+        });
         const platform = wx.getSystemInfoSync().platform
         const isIOS = platform === 'ios'
         this.setData({
@@ -44,7 +45,7 @@ Page({
             }, duration)
         });
         wx.setNavigationBarTitle({
-            title: storage.get(storage.EDITOR_TITLE)
+            title: app.storage.get(app.storage.EDITOR_TITLE)
         })
     },
 
@@ -134,8 +135,9 @@ Page({
      * 重设编辑器中的内容等待编辑
      */
     resetHtmlContent() {
+        let that = this;
         this.editorCtx.setContents({
-            html: storage.get(storage.EDITOR_CONTENT),
+            html: app.storage.get(app.storage.EDITOR_CONTENT),
             success: res => {
                 //console.log(res);
             },
@@ -148,20 +150,21 @@ Page({
         let that = this;
         this.editorCtx.getContents({
             success: function(res) {
-                storage.set(storage.EDITOR_CONTENT, res.html);
-                that.setPreviewPage();
-                // 返回上一页
-                wx.navigateBack({
-                    delta: 1
+                app.storage.set(app.storage.EDITOR_CONTENT, res.html);
+                // 添加或更新图文内容
+                let data = that.data.content;
+                app.api.post(data.id > 0 ? app.api.contentEdit : app.api.contentAdd, {
+                    id: data.id,
+                    content: res.html
+                }, res => {
+                    app.page.setPreviousData({
+                        content: res.data,
+                        isEditorReturn: 1
+                    });
+                    // 返回上一页
+                    app.page.back();
                 });
             }
-        });
-    },
-    setPreviewPage() {
-        var pages = getCurrentPages();
-        var prePage = pages[pages.length - 2];
-        prePage.setData({
-            isEditorReturn: 1
         });
     },
     blur() {
@@ -209,22 +212,22 @@ Page({
     },
     insertImage() {
         const that = this;
-        file.choose({
+        that.file.choose({
             type: 'image',
             count: 1,
             success: res => {
                 console.log(res);
                 // 文件选择成功，查询远程服务器上是否有相同记录
-                file.checkRemoteFile({
+                that.file.checkRemoteFile({
                     signature: res.signature,
                     success: data => {
-                        that.insertUploaded(api.http + "/" + data.url);
+                        that.insertUploaded(app.api.http + "/" + data.url);
                     },
                     fail: () => {
                         console.log("远程服务器上不存在相同文件，需要上传");
-                        api.upload(res, data => {
+                        app.api.upload(res, data => {
                             console.log(data);
-                            that.insertUploaded(api.http + "/" + data.url);
+                            that.insertUploaded(app.api.http + "/" + data.url);
                         }, error => {
                             console.log(error);
                         });

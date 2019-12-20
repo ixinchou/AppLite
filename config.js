@@ -64,6 +64,10 @@ var config = {
      * 拉取课程列表
      */
     courseList: `${host}/api/course/list`,
+    /**课程添加 */
+    courseAdd: `${host}/api/course/add`,
+    /**课程编辑 */
+    courseEdit: `${host}/api/course/update`,
 
     // 显示加载中界面
     showLoading: function(title) {
