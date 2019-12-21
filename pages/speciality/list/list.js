@@ -17,7 +17,7 @@ Page({
     onLoad: function(options) {
         this.setData({
             http: app.api.http + "/",
-            uploadAble: app.myInfo.uploadAble
+            uploadAble: !!app.myInfo ? app.myInfo.uploadAble : false
         });
         this.fetchingCourses();
     },

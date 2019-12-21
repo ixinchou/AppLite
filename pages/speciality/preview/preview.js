@@ -13,7 +13,8 @@ Page({
         fee: 0.00,
         time: '',
         html: '<p>没有内容</p>',
-        isEditorReturn: 0
+        isEditorReturn: 0,
+        uploadAble: false
     },
 
     /**
@@ -27,7 +28,7 @@ Page({
         }
         this.setData({
             http: app.api.http + '/',
-            uploadAble: app.myInfo.uploadAble,
+            uploadAble: !!app.myInfo ? app.myInfo.uploadAble : false,
             item: obj
         });
         this.loadItem();

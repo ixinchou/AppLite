@@ -1,2 +1,8 @@
 <!--pages/member/member.wxml-->
-<text>pages/member/member.wxml</text>
+<view class="main">
+    <view class="page__bd">
+        <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
+    </view>
+    <view class="content">
+    </view>
+</view>

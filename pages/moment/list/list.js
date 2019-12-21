@@ -25,7 +25,7 @@ Page({
         let val = options.data;
         let type = app.api.isEmpty(val) ? 1 : parseInt(val)
         this.setData({
-            uploadAble: app.myInfo.uploadAble,
+            uploadAble: !!app.myInfo ? app.myInfo.uploadAble : false,
             type: type,
             http: app.api.http,
             name: type == 2 ? "学生才艺" : "教师风采"

@@ -33,7 +33,7 @@ Page({
             obj = JSON.parse(options.data);
         }
         this.setData({
-            uploadAble: app.myInfo.uploadAble,
+            uploadAble: !!app.myInfo ? app.myInfo.uploadAble : false,
             course: obj,
             content: !!obj ? obj.content : null,
             cover: !!obj ? obj.cover : null,

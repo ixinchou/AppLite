@@ -1,7 +1,5 @@
 // pages/person/person.js
-const app = getApp();
-const childrenTemp = require('../../data-temp.js').children;
-const config = require('../../config.js');
+const app = getApp().globalData;
 const util = require('../../utils/util.js');
 
 Page({
@@ -48,35 +46,35 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        var isAdmin = null == app.globalData.myInfo ? false : app.globalData.myInfo.uploadAble;
+        var isAdmin = null == app.myInfo ? false : app.myInfo.uploadAble;
         var menu = this.data.menus.filter((item) => {
             return (isAdmin ? item.id > 0 : item.admin === false);
         });
-        menu[0].value = (null == app.globalData.myInfo ? "" : app.globalData.myInfo.userName);
-        menu[1].value = (null == app.globalData.myInfo ? "" : app.globalData.myInfo.phone);
+        menu[0].value = (null == app.myInfo ? "" : app.myInfo.userName);
+        menu[1].value = (null == app.myInfo ? "" : app.myInfo.phone);
         this.setData({
-            userInfo: app.globalData.userInfo,
+            userInfo: app.userInfo,
             menus: menu
         });
-        if (app.globalData.children.length <= 0) {
+        if (app.children.length <= 0) {
             // 没有拉取过孩子信息，则这里拉取并缓存
             var that = this;
             // 拉取我添加的孩子列表
-            config.get(config.childList + app.globalData.myInfo.sessionId, null, function(res) {
+            app.api.get(app.api.childList + (!!app.myInfo ? app.myInfo.sessionId : ""), null, function(res) {
                 console.log(res);
                 var list = res.data;
                 for (let item of list) {
                     var birthday = item.birthday.substring(0, 10);
                     item.age = util.calculateAge(util.parseDate(birthday));
                 }
-                app.globalData.children = res.data
+                app.children = res.data
                 that.setData({
                     children: res.data
                 });
             });
         } else {
             this.setData({
-                children: app.globalData.children
+                children: app.children
             });
         }
     },
@@ -133,6 +131,12 @@ Page({
     },
     menuItemClick: function(e) {
         var id = e.currentTarget.dataset.index;
+        if (id == 3) {
+            wx.navigateTo({
+                url: '/pages/member/member',
+            });
+            return;
+        }
         this.openInputableDialog(e);
     },
     getPhoneNumber: function(e) {
@@ -154,11 +158,11 @@ Page({
         var param = {};
         param.iv = e.detail.iv;
         param.encryptedData = e.detail.encryptedData;
-        param.sessionId = app.globalData.myInfo.sessionId;
-        config.post(config.wxPhone, param, function(e) {
+        param.sessionId = app.myInfo.sessionId;
+        app.api.post(app.api.wxPhone, param, function(e) {
             console.log(e);
             // 本地全局缓存我的详细信息
-            app.globalData.myInfo = e.data;
+            app.myInfo = e.data;
             var menu = that.data.menus;
             menu[1].value = e.data.phone;
             // 更新UI上的手机号码
@@ -213,9 +217,9 @@ Page({
                 var that = this;
                 // 更新我的名字
                 var param = {};
-                param.sessionId = app.globalData.myInfo.sessionId;
+                param.sessionId = app.myInfo.sessionId;
                 param.userName = data.inputValue;
-                config.post(config.updateMemberName, param, function(res) {
+                app.api.post(app.api.updateMemberName, param, function(res) {
                     // 更改成功
                     var item = items[index];
                     item.value = data.inputValue;
@@ -249,10 +253,10 @@ Page({
         child.birthday = data.childBirthday + " 00:00:00";
         child.sex = data.childSex;
         child.age = data.childAge;
-        child.sessionId = app.globalData.myInfo.sessionId;
+        child.sessionId = app.myInfo.sessionId;
         // 向远程服务器添加一条孩子的信息
         var that = this;
-        config.post(config.childAdd, child, function(res) {
+        app.api.post(app.api.childAdd, child, function(res) {
             console.log(res)
             var chs = that.data.children;
             child.id = chs.length + 1;
@@ -279,7 +283,7 @@ Page({
                 cancelText: "取消",
                 success(res) {
                     if (res.confirm) {
-                        config.post(config.childDelete + del.id, null, function(data) {
+                        app.api.post(app.api.childDelete + del.id, null, function(data) {
                             console.log("删除已登记的孩子的信息");
                             var source = that.data.children;
                             source.splice(del, 1);

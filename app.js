@@ -35,7 +35,7 @@ App({
                     }
                 }
             });
-            that.fetchingDetails(session);
+            //that.fetchingDetails(session);
         }
     },
     fetchingDetails: function(session) {

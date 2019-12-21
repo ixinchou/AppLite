@@ -1,1 +1,4 @@
 /* pages/member/member.wxss */
+
+@import '../common/common.wxss';
+@import '../../weui.wxss';

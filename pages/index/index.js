@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp().globalData;
 
 Page({
     data: {
@@ -10,15 +10,15 @@ Page({
         canIUse: wx.canIUse('button.open-type.getUserInfo')
     },
     onLoad: function() {
-        if (app.globalData.userInfo) {
+        if (app.userInfo) {
             this.setData({
-                userInfo: app.globalData.userInfo,
+                userInfo: app.userInfo,
                 hasUserInfo: true
             })
         } else if (this.data.canIUse) {
             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
             // 所以此处加入 callback 以防止这种情况
-            app.userInfoReadyCallback = res => {
+            getApp().userInfoReadyCallback = res => {
                 this.setData({
                     userInfo: res.userInfo,
                     hasUserInfo: true
@@ -28,24 +28,24 @@ Page({
             // 在没有 open-type=getUserInfo 版本的兼容处理
             wx.getUserInfo({
                 success: res => {
-                    app.globalData.userInfo = res.userInfo
+                    app.userInfo = res.userInfo
                     this.setData({
                         userInfo: res.userInfo,
                         hasUserInfo: true
                     });
-                    app.fetchingUserSession(res.signature, res.iv, res.encryptedData);
+                    getApp().fetchingUserSession(res.signature, res.iv, res.encryptedData);
                 }
             })
         }
     },
     getUserInfo: function(e) {
         console.log(e)
-        app.globalData.userInfo = e.detail.userInfo
+        app.userInfo = e.detail.userInfo
         this.setData({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
         });
-        app.fetchingUserSession(e.detail.signature, e.detail.iv, e.detail.encryptedData);
+        getApp().fetchingUserSession(e.detail.signature, e.detail.iv, e.detail.encryptedData);
     },
     fireToMain: function() {
         wx.redirectTo({

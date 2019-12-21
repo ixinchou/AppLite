@@ -7,7 +7,6 @@ Page({
      * 页面的初始数据
      */
     data: {
-        userInfo: {},
         uploadAble: false,
         motto: null,
         content: null,
@@ -20,8 +19,7 @@ Page({
      */
     onLoad: function(options) {
         this.setData({
-            userInfo: app.userInfo,
-            uploadAble: app.myInfo.uploadAble
+            uploadAble: !!app.myInfo ? app.myInfo.uploadAble : false
         });
         // 页面加载的时候拉取一次校训内容
         this.fetchingMotto();
