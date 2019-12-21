@@ -1,0 +1,41 @@
+/* pages/moment/edit/edit.wxss */
+@import '../../common/common.wxss';
+@import '../../../weui.wxss';
+
+
+.item-title {
+    font-size: 20rpx;
+    margin-bottom: 10rpx;
+}
+
+.item-inputbox {
+    background-color: #fff;
+    border-radius: 10rpx;
+    padding: 10px;
+}
+
+.placeholder {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.icon-add-1 {
+    color: #24c903;
+    font-size: 35rpx;
+    margin-left: 2px;
+    background: transparent;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    margin-top: -30rpx;
+    padding-bottom: 5px;
+}
+
+.icon-add-1::after {
+    border: none;
+    background-color: transparent;
+}
+
+.icon-add-1-hover {
+    color: #f00;
+    background: transparent;
+}

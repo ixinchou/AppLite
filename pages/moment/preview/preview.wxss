@@ -1,0 +1,3 @@
+/* pages/moment/preview/preview.wxss */
+@import '../../common/common.wxss';
+@import '../../../weui.wxss';

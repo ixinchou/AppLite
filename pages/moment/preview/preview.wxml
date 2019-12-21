@@ -1,0 +1,8 @@
+<!--pages/moment/preview/preview.wxml-->
+<view class="main">
+    <view class="content">
+        <view class="content-text">
+            <rich-text nodes="{{html}}"></rich-text>
+        </view>
+    </view>
+</view>

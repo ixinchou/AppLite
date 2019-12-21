@@ -1,4 +1,4 @@
-// pages/speciality/list/list.js
+// pages/moment/preview/preview.js
 const app = getApp().globalData;
 Page({
 
@@ -6,26 +6,28 @@ Page({
      * 页面的初始数据
      */
     data: {
-        uploadAble: false,
-        skills: [],
-        http: ''
+        id: 0,
+        html: ''
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        let value = options.data;
+        var id = parseInt(value);
         this.setData({
-            http: app.api.http + "/",
-            uploadAble: app.myInfo.uploadAble
+            id: id
         });
-        this.fetchingCourses();
+        this.fetchingMoment();
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {},
+    onReady: function() {
+
+    },
 
     /**
      * 生命周期函数--监听页面显示
@@ -68,31 +70,17 @@ Page({
     onShareAppMessage: function() {
 
     },
-    onItemClick: function(item) {
-        //console.log(item.currentTarget.dataset.item);
-        // 转到详情页
-        let json = JSON.stringify(item.currentTarget.dataset.item);
-        wx.navigateTo({
-            url: '/pages/speciality/preview/preview?data=' + json,
-        });
-    },
-    fetchingCourses: function() {
+
+    /**拉取详情 */
+    fetchingMoment: function() {
         let that = this;
-        app.api.get(app.api.courseList, {
-            pageIndex: 1,
-            pageSize: 10
-        }, res => {
+        app.api.get(`${app.api.momentGet}/${that.data.id}`, null, res => {
             that.setData({
-                skills: res.data.list
+                html: !!res.data && !!res.data.content ? res.data.content.content : '<p>没有内容...</p>'
             });
-        });
-    },
-    /**
-     * 转到添加编辑页
-     */
-    fireToSpecialityEdit: function() {
-        wx.navigateTo({
-            url: '/pages/speciality/edit/edit?data=',
+            wx.setNavigationBarTitle({
+                title: !!res.data ? res.data.title : '没有内容',
+            });
         });
     }
 })

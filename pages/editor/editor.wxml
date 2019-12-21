@@ -1,7 +1,10 @@
 <view class="container" style="height:{{editorHeight}}px;">
     <editor id="editor" class="ql-container" placeholder="{{placeholder}}" bindstatuschange="onStatusChange" bindready="onEditorReady">
     </editor>
-    <button type="primary" style="width: 90%; margin: 10rpx;" bindtap="saveContents">保存</button>
+    <view style="display: flex; flex-direction: column;">
+        <button type="primary" style="margin: 10rpx;" bindtap="insertImage">图片</button>
+        <button type="primary" style="margin: 10rpx;" bindtap="saveContents">保存</button>
+    </view>
 </view>
 
 <view class="toolbar" catchtouchend="format" hidden="{{keyboardHeight > 0 ? false : true}}" style="bottom: {{isIOS ? keyboardHeight : 0}}px">

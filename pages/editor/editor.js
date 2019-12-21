@@ -8,6 +8,8 @@ Page({
     data: {
         content: null,
         formats: {},
+        // 附件列表
+        attachments: [],
         readOnly: false,
         placeholder: '开始输入...',
         editorHeight: 300,
@@ -26,14 +28,14 @@ Page({
         const isIOS = platform === 'ios'
         this.setData({
             isIOS
-        })
-        const that = this
-        this.updatePosition(0)
-        let keyboardHeight = 0
+        });
+        const that = this;
+        this.updatePosition(0);
+        let keyboardHeight = 0;
         wx.onKeyboardHeightChange(res => {
             if (res.height === keyboardHeight) return
-            const duration = res.height > 0 ? res.duration * 1000 : 0
-            keyboardHeight = res.height
+            const duration = res.height > 0 ? res.duration * 1000 : 0;
+            keyboardHeight = res.height;
             setTimeout(() => {
                 wx.pageScrollTo({
                     scrollTop: 0,
@@ -159,6 +161,8 @@ Page({
                 }, res => {
                     app.page.setPreviousData({
                         content: res.data,
+                        // 返回给前一页所有附件列表
+                        attachments: that.data.attachments,
                         isEditorReturn: 1
                     });
                     // 返回上一页
@@ -212,22 +216,24 @@ Page({
     },
     insertImage() {
         const that = this;
-        that.file.choose({
+        app.file.choose({
             type: 'image',
             count: 1,
             success: res => {
                 console.log(res);
                 // 文件选择成功，查询远程服务器上是否有相同记录
-                that.file.checkRemoteFile({
+                app.file.checkRemoteFile({
                     signature: res.signature,
                     success: data => {
-                        that.insertUploaded(app.api.http + "/" + data.url);
+                        that.cacheAttachmentIds(data);
+                        that.insertUploaded(data.url);
                     },
                     fail: () => {
                         console.log("远程服务器上不存在相同文件，需要上传");
                         app.api.upload(res, data => {
                             console.log(data);
-                            that.insertUploaded(app.api.http + "/" + data.url);
+                            that.cacheAttachmentIds(data);
+                            that.insertUploaded(data.url);
                         }, error => {
                             console.log(error);
                         });
@@ -242,8 +248,20 @@ Page({
     insertUploaded(url) {
         console.log(url);
         this.editorCtx.insertImage({
-            src: url,
+            src: app.api.http + "/" + url,
             width: '90%'
         });
+    },
+    cacheAttachmentIds: function(data) {
+        let exists = this.data.attachments.filter(item => {
+            return item == data.id;
+        });
+        if (null == exists || exists.length <= 0) {
+            let array = this.data.attachments;
+            array.push(data.id);
+            this.setData({
+                attachments: array
+            });
+        }
     }
 })

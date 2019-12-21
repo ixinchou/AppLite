@@ -1,6 +1,6 @@
 // 主域名
-var http = "http://10.141.130.4";
-var host = `${http}:8082`; //"https://edu.ixchou.com";
+var http = "https://edu.ixchou.com";
+var host = `${http}`; //"https://edu.ixchou.com";
 
 // 配置对象
 var config = {
@@ -70,6 +70,14 @@ var config = {
     courseEdit: `${host}/api/course/update`,
     /**课程学期类型 */
     termList: `${host}/api/term/list`,
+    /**个人风采列表 */
+    momentList: `${host}/api/moment/list`,
+    /**个人风采添加 */
+    momentAdd: `${host}/api/moment/add`,
+    /**单个获取个人风采内容 */
+    momentGet: `${host}/api/moment/query`,
+    /**拉取最新的10张图片来展示 */
+    latestImages: `${host}/api/attachment/latest`,
 
     // 显示加载中界面
     showLoading: function(title) {

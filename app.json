@@ -9,7 +9,10 @@
         "pages/member/member",
         "pages/speciality/list/list",
         "pages/speciality/edit/edit",
-        "pages/speciality/preview/preview"
+        "pages/speciality/preview/preview",
+        "pages/moment/edit/edit",
+        "pages/moment/list/list",
+        "pages/moment/preview/preview"
     ],
     "window": {
         "backgroundTextStyle": "light",

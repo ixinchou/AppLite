@@ -1,6 +1,6 @@
 // pages/main/main.js
-const app = getApp()
-const hotImages = require('../../data-temp.js').hotImage
+const app = getApp().globalData;
+// const hotImages = require('../../data-temp.js').hotImage
 Page({
 
     /**
@@ -8,8 +8,9 @@ Page({
      */
     data: {
         userInfo: {},
-        hotImages: hotImages,
+        hotImages: [],
         swiper_height: 0,
+        http: '',
         menu: [{
             id: 1,
             name: "新筹校训",
@@ -38,9 +39,11 @@ Page({
      */
     onLoad: function(options) {
         this.setData({
-            userInfo: app.globalData.userInfo,
+            userInfo: app.userInfo,
+            http: app.api.http + "/",
             swiper_height: 350
-        })
+        });
+        this.fetchingLatest();
     },
 
     /**
@@ -110,6 +113,26 @@ Page({
     fireToSpeciality: function() {
         wx.navigateTo({
             url: '/pages/speciality/list/list',
+        });
+    },
+    /**转到教师风采列表 */
+    fireToTeachers: function() {
+        wx.navigateTo({
+            url: '/pages/moment/list/list?data=1',
+        });
+    },
+    /**转到学生才艺 */
+    fireToStudents: function() {
+        wx.navigateTo({
+            url: '/pages/moment/list/list?data=2',
+        });
+    },
+    fetchingLatest: function() {
+        let that = this;
+        app.api.get(app.api.latestImages, null, res => {
+            that.setData({
+                hotImages: res.data.list
+            });
         });
     }
 })

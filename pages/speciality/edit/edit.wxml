@@ -51,7 +51,8 @@
                         <rich-text nodes="{{html}}"></rich-text>
                     </view>
                     <view wx:if="{{uploadAble}}">
-                        <button class="ixchou-font ixchou-add-fill icon-add-1" hover-class="icon-add-1-hover" bindtap="fireToContent" />
+                        <button class="ixchou-font ixchou-add-fill icon-add-1" wx:if="{{!content}}" hover-class="icon-add-1-hover" bindtap="fireToContent" />
+                        <button class="ixchou-font ixchou-edit icon-add-1" wx:else hover-class="icon-add-1-hover" bindtap="fireToContent" />
                     </view>
                 </view>
             </view>

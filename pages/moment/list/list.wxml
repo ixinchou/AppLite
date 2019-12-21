@@ -1,0 +1,40 @@
+<!--pages/moment/list/list.wxml-->
+<view class="main">
+    <view class="content">
+        <text wx:if="{{0==items.length}}">{{type==1?empty1:empty2}}</text>
+        <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{items}}" wx:key="id" bindtap="onItemClick" data-item="{{item}}">
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{item.title}}</view>
+                        <view class="weui-media-box__desc" wx:if="{{item.attachments.length>0}}">
+                            <view class="weui-flex">
+                                <view class="weui-flex__item">
+                                    <image class="weui-media-box__thumb image" src="{{http+item.attachments[0].url}}" />
+                                </view>
+                                <view class="weui-flex__item" wx:if="item.attachments.length>2">
+                                    <image class="weui-media-box__thumb image" src="{{http+item.attachments[1].url}}" />
+                                </view>
+                                <view class="weui-flex__item" wx:if="item.attachments.length>3">
+                                    <image class="weui-media-box__thumb image" src="{{http+item.attachments[2].url}}" />
+                                </view>
+                            </view>
+                        </view>
+                        <view class="weui-media-box__desc see-more" wx:if="{{item.attachments.length<=0}}">
+                            去看看
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <text wx:if="{{!more && items.length > 0}}" class="more">----- 后面已经没有了 ------</text>
+    </view>
+    <view wx:if="{{uploadAble}}">
+        <view class="bottom-bar" hover-class="bottom-bar-hover" bindtap="fireToMomentEdit">
+            <view class="bottom-bar-icon-container">
+                <icon class="ixchou-font ixchou-add-fill bottom-bar-icon"></icon>
+            </view>
+            <text class="bottom-bar-icon">添加{{name}}</text>
+        </view>
+    </view>
+</view>

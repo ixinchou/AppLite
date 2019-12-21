@@ -1,5 +1,4 @@
 <!--pages/speciality/preview/preview.wxml-->
-<!--pages/speciality/list/list.wxml-->
 <view class="main">
     <view class="content" style="margin-bottom: 100rpx;">
         <text wx:if="{{0==skills.length}}">请先添加特长分类...</text>
