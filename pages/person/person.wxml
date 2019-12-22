@@ -53,6 +53,6 @@
 </view>
 <modal id='modal' dialogTitle='添加孩子信息' dialogContent='我是内容' isShowning="{{dialogShowning}}" bind:cancelEvent="cancelChildDialog" bind:confirmEvent="confirmChildDialog">
 </modal>
-<modalInput id='modalInput' dialogTitle='{{inputableDialogTitle}}' inputPlaceHolder='{{inputableDialogHint}}' isShowning="{{singleInputDialogSHowning}}" inputType="{{inputableType}}" maxLength="{{inputableLength}}" bind:cancelEvent="cancelInputableDialog"
+<modalInput id='modalInput' dialogTitle='{{inputableDialogTitle}}' inputPlaceHolder='{{inputableDialogHint}}' isShowning="{{singleInputDialogSHowning}}" inputType="{{inputableType}}" maxLength="{{inputableLength}}" inputDescription="{{inputDescription}}" bind:cancelEvent="cancelInputableDialog"
     bind:confirmEvent="confirmInputabledDialog">
 </modalInput>

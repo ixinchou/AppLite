@@ -1,6 +1,8 @@
 // 主域名
-var http = "https://edu.ixchou.com";
-var host = `${http}`; //"https://edu.ixchou.com";
+var http = "http://10.141.130.4";
+var host = `${http}:8082`; //"https://edu.ixchou.com";
+// var http = "https://edu.ixchou.com";
+// var host = `${http}`; 
 
 // 配置对象
 var config = {
@@ -126,7 +128,17 @@ var config = {
                 callback(res);
             },
             fail: res => {
+                console.log(res)
+                // res.errMsg
+                console.log("failed request url: " + url + ", message: " + res.errMsg);
                 config.hideLoading();
+                // 网络调用失败的时候自定义错误类型
+                callback({
+                    data: {
+                        code: '999',
+                        message: res.errMsg
+                    }
+                });
             }
         });
     },

@@ -37,6 +37,7 @@ Page({
         inputableDialogTitle: "",
         inputableDialogHint: "",
         inputableType: "text",
+        inputDescription: "为了保证您的孩子在接送时的安全，请尽量用您的真实姓名！",
         inputableLength: 10,
         isInputName: false,
         isInputPhone: false,

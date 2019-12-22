@@ -7,6 +7,7 @@ Page({
         motto: '如果您是首次使用小程序，则需要向微信申请相关授权',
         userInfo: {},
         hasUserInfo: false,
+        myInfo: null,
         canIUse: wx.canIUse('button.open-type.getUserInfo')
     },
     onLoad: function() {
@@ -22,20 +23,16 @@ Page({
                 this.setData({
                     userInfo: res.userInfo,
                     hasUserInfo: true
-                })
-            }
+                });
+            };
+            getApp().userSessionReadyCallback = res => {
+                this.setData({
+                    myInfo: res
+                });
+            };
         } else {
             // 在没有 open-type=getUserInfo 版本的兼容处理
-            wx.getUserInfo({
-                success: res => {
-                    app.userInfo = res.userInfo
-                    this.setData({
-                        userInfo: res.userInfo,
-                        hasUserInfo: true
-                    });
-                    getApp().fetchingUserSession(res.signature, res.iv, res.encryptedData);
-                }
-            })
+            this.refetchingUserInfo();
         }
     },
     getUserInfo: function(e) {
@@ -47,9 +44,33 @@ Page({
         });
         getApp().fetchingUserSession(e.detail.signature, e.detail.iv, e.detail.encryptedData);
     },
+    refetchingUserInfo: function() {
+        wx.getUserInfo({
+            success: res => {
+                app.userInfo = res.userInfo
+                this.setData({
+                    userInfo: res.userInfo,
+                    hasUserInfo: true
+                });
+                getApp().fetchingUserSession(res.signature, res.iv, res.encryptedData);
+            }
+        });
+    },
+    checkFireToMain: function() {
+        if (null == app.myInfo) {
+            // 重新拉取并绑定微信账户
+            this.refetchingUserInfo();
+            let self = this;
+            getApp().userSessionReadyCallback = res => {
+                self.fireToMain();
+            };
+        } else {
+            this.fireToMain();
+        }
+    },
     fireToMain: function() {
         wx.redirectTo({
             url: '../main/main'
-        })
+        });
     }
 })

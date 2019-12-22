@@ -7,6 +7,7 @@
             </view>
             <view class='modal-body'>
                 <input placeholder="{{inputPlaceHolder}}" id="input" type="{{inputType}}" maxlength="{{maxLength}}" class="input" value="{{inputValue}}" bindinput="bindInput"></input>
+                <view class="modal-description">{{inputDescription}}</view>
             </view>
             <view class='modal-footer'>
                 <button type="default" class="cancle" catchtap='_cancelEvent'>{{dialogCancelText}}</button>

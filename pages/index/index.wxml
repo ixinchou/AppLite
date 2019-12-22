@@ -1,15 +1,15 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <image wx:if="{{!hasUserInfo && canIUse}}" class="userinfo-avatar" src="/images/icon_ixchou.png"></image>
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <button wx:if="{{hasUserInfo}}" bindtap="fireToMain"> 微信已授权，点击进入 </button>
-    <text wx:else class="first-description">{{motto}}</text>
-  </view>
+    <view class="userinfo">
+        <image wx:if="{{!hasUserInfo && canIUse}}" class="userinfo-avatar" src="/images/icon_ixchou.png"></image>
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+        <block wx:else>
+            <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
+    </view>
+    <view class="usermotto">
+        <button wx:if="{{hasUserInfo}}" bindtap="checkFireToMain"> 微信已授权，点击进入 </button>
+        <text wx:else class="first-description">{{motto}}</text>
+    </view>
 </view>

@@ -10,7 +10,7 @@ App({
         // 查看本地存储中是否有 session 信息
         var that = this;
         var session = storage.get(storage.IXCHOU_SESSION);
-        if (null == session || "" === session) {
+        if (api.isEmpty(session)) {
             this.globalData.hasSession = false;
         } else {
             this.globalData.hasSession = true;
@@ -35,7 +35,7 @@ App({
                     }
                 }
             });
-            //that.fetchingDetails(session);
+            that.fetchingDetails(session);
         }
     },
     fetchingDetails: function(session) {
@@ -46,6 +46,12 @@ App({
             that.globalData.myInfo = res.data;
             // 缓存是否具有管理员属性
             //storage.set(storage.IXCHOU_ADMIN, res.data.isUploadAble);
+            if (that.userSessionReadyCallback) {
+                that.userSessionReadyCallback(res.data);
+            }
+        }, res => {
+            // session 绑定的微信id不存在，需要重新拿取微信信息绑定
+            this.globalData.hasSession = false;
         });
     },
     globalData: {
@@ -82,6 +88,9 @@ App({
                         //storage.set(storage.IXCHOU_ADMIN, res.data.isUploadAble);
                         // 拉取用户的详细信息
                         that.globalData.myInfo = res.data;
+                        if (that.userSessionReadyCallback) {
+                            that.userSessionReadyCallback(res.data);
+                        }
                     });
                 }
             })

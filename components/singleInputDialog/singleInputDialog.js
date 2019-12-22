@@ -16,6 +16,10 @@ Component({
             type: String,
             value: "text"
         },
+        inputDescription: {
+            type: String,
+            value: "备注描述"
+        },
         maxLength: {
             type: Number,
             value: 10
