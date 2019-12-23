@@ -1,5 +1,5 @@
 // 主域名
-var http = "http://192.168.80.173";
+var http = "http://localhost";
 var host = `${http}:8082`; //"https://edu.ixchou.com";
 // var http = "https://edu.ixchou.com";
 // var host = `${http}`; 

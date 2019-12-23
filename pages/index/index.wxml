@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
     <view class="userinfo">
-        <image wx:if="{{!hasUserInfo && canIUse}}" class="userinfo-avatar" src="/images/icon_ixchou.png"></image>
+        <image wx:if="{{!hasUserInfo && canIUse}}" class="logo" src="/images/ixchou_logo_litter.png" mode="aspectFit"></image>
         <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
         <block wx:else>
             <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
@@ -9,7 +9,6 @@
         </block>
     </view>
     <view class="usermotto">
-        <button wx:if="{{hasUserInfo}}" bindtap="checkFireToMain"> 微信已授权，点击进入 </button>
-        <text wx:else class="first-description">{{motto}}</text>
+        <text class="first-description">{{motto}}</text>
     </view>
 </view>

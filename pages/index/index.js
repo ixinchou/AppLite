@@ -5,7 +5,7 @@ const app = getApp().globalData;
 Page({
     data: {
         motto: '如果您是首次使用小程序，则需要向微信申请相关授权',
-        userInfo: {},
+        userInfo: null,
         hasUserInfo: false,
         myInfo: null,
         canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -29,6 +29,8 @@ Page({
                 this.setData({
                     myInfo: res
                 });
+                // 用户信息绑定完毕，直接进入首页，不用再等着用户点击按钮
+                this.fireToMain();
             };
         } else {
             // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -36,7 +38,6 @@ Page({
         }
     },
     getUserInfo: function(e) {
-        console.log(e)
         app.userInfo = e.detail.userInfo
         this.setData({
             userInfo: e.detail.userInfo,
@@ -45,27 +46,18 @@ Page({
         getApp().fetchingUserSession(e.detail.signature, e.detail.iv, e.detail.encryptedData);
     },
     refetchingUserInfo: function() {
-        wx.getUserInfo({
-            success: res => {
-                app.userInfo = res.userInfo
-                this.setData({
-                    userInfo: res.userInfo,
-                    hasUserInfo: true
-                });
-                getApp().fetchingUserSession(res.signature, res.iv, res.encryptedData);
-            }
-        });
+        app.refetchingUserInfo(true);
     },
-    checkFireToMain: function() {
+    checkFireToMain: function () {
+        let self = this;
         if (null == app.myInfo) {
-            // 重新拉取并绑定微信账户
-            this.refetchingUserInfo();
-            let self = this;
             getApp().userSessionReadyCallback = res => {
                 self.fireToMain();
             };
+            // 重新拉取并绑定微信账户
+            app.refetchingUserInfo(false);
         } else {
-            this.fireToMain();
+            self.fireToMain();
         }
     },
     fireToMain: function() {
