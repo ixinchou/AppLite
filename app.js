@@ -7,6 +7,9 @@ const page = require("page.js");
 
 App({
     onLaunch: function() {
+        wx.hideTabBar({
+            animation: true
+        })
         // 查看本地存储中是否有 session 信息
         var that = this;
         var session = storage.get(storage.IXCHOU_SESSION);
@@ -37,6 +40,9 @@ App({
             });
             that.fetchingDetails(session);
         }
+        wx.navigateTo({
+            url: 'pages/index/index',
+        })
     },
     fetchingDetails: function(session) {
         var that = this;

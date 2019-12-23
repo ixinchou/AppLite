@@ -1,10 +1,10 @@
 {
     "pages": [
+        "pages/school/schoolMotto",
         "pages/index/index",
         "pages/main/main",
         "pages/person/person",
         "pages/logs/logs",
-        "pages/school/schoolMotto",
         "pages/editor/editor",
         "pages/member/member",
         "pages/speciality/list/list",
@@ -19,6 +19,44 @@
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "新筹教育培训学校",
         "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#7A7E83",
+        "selectedColor": "#3cc51f",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/school/schoolMotto",
+                "iconPath": "images/icon_introduce.png",
+                "selectedIconPath": "images/icon_introduce_selected.png",
+                "text": "新筹简介"
+            },
+            {
+                "pagePath": "pages/speciality/list/list",
+                "iconPath": "images/icon_types.png",
+                "selectedIconPath": "images/icon_types_selected.png",
+                "text": "特长分类"
+            },
+            {
+                "pagePath": "pages/moment/list/list",
+                "iconPath": "images/icon_teacher.png",
+                "selectedIconPath": "images/icon_teacher_selected.png",
+                "text": "教师风采"
+            },
+            {
+                "pagePath": "pages/moment/list/list",
+                "iconPath": "images/icon_student.png",
+                "selectedIconPath": "images/icon_student_selected.png",
+                "text": "学生才艺"
+            },
+            {
+                "pagePath": "pages/person/person",
+                "iconPath": "images/icon_mine.png",
+                "selectedIconPath": "images/icon_mine_selected.png",
+                "text": "我"
+            }
+        ]
     },
     "sitemapLocation": "sitemap.json"
 }
