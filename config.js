@@ -1,8 +1,8 @@
 // 主域名
-var http = "http://localhost";
-var host = `${http}:8082`; //"https://edu.ixchou.com";
-// var http = "https://edu.ixchou.com";
-// var host = `${http}`; 
+// var http = "http://localhost";
+// var host = `${http}:8082`; //"https://edu.ixchou.com";
+var http = "https://edu.ixchou.com";
+var host = `${http}`; 
 
 // 配置对象
 var config = {

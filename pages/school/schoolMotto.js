@@ -41,6 +41,8 @@ Page({
                 // 新建添加完毕之后，本地缓存数据清空
                 isEditorReturn: 0
             });
+            // 标记简介内容已修改，需要重新拉取再显示
+            app.mottoChanged = true;
         }
     },
 

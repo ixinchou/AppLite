@@ -9,6 +9,7 @@
         </block>
     </view>
     <view class="usermotto">
+        <button wx:if="{{hasUserInfo}}" bindtap="checkFireToMain"> 微信已授权，点击进入 </button>
         <text class="first-description">{{motto}}</text>
     </view>
 </view>

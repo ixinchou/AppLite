@@ -11,6 +11,7 @@ Page({
         hotImages: [],
         swiper_height: 0,
         http: '',
+        html: '',
         menu: [{
             id: 1,
             name: "新筹校训",
@@ -43,7 +44,8 @@ Page({
             http: app.api.http + "/",
             swiper_height: 350
         });
-        this.fetchingLatest();
+        //this.fetchingLatest();
+        this.fetchingMotto();
     },
 
     /**
@@ -57,7 +59,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-
+        if (app.mottoChanged) {
+            // 再次显示的时候判断一下是否修改过了简介的内容，如果修改了，则需要重新拉取内容并展示
+            app.mottoChanged = false;
+            this.fetchingMotto();
+        }
     },
 
     /**
@@ -132,6 +138,16 @@ Page({
         app.api.get(app.api.latestImages, null, res => {
             that.setData({
                 hotImages: res.data.list
+            });
+        });
+    },
+    /**拉取学校简介内容 */
+    fetchingMotto: function() {
+        let that = this;
+        app.api.get(app.api.mottoGet, null, res => {
+            //console.log(res);
+            that.setData({
+                html:!!res.data&&!!res.data.content?res.data.content.content:''
             });
         });
     }

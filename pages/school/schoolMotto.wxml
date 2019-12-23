@@ -1,7 +1,7 @@
 <!--pages/school/schoolMotto.wxml-->
 <view class="main">
     <view class="motto-content">
-        <text wx:if="{{null==motto}}">没有添加校训内容，请先添加...</text>
+        <text wx:if="{{null==motto}}">没有添加简介内容，请先添加...</text>
         <rich-text wx:else nodes="{{html}}"></rich-text>
     </view>
     <view wx:if="{{uploadAble}}">

@@ -54,6 +54,7 @@ App({
         editor: editor,
         file: file,
         page: page,
+        mottoChanged: false,
         userInfo: null,
         hasSession: false,
         myInfo: null,

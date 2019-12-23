@@ -13,8 +13,8 @@ Page({
         pageIndex: 1,
         uploadAble: false,
         items: [],
-        empty1: '请先添加一些精彩的教师采风...',
-        empty2: '请先添加一些精彩的学生才艺...',
+        empty1: '请先添加一些精彩的教师风采...',
+        empty2: '请先添加一些精彩的学生才艺展示...',
         isEditorReturn: 0
     },
 

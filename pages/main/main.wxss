@@ -1,4 +1,6 @@
 /* pages/main/main.wxss */
+@import '../common/common.wxss';
+@import '../../weui.wxss';
 
 .header {
     width: 100%;
@@ -7,6 +9,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    position: fixed;
+    top: 0;
 }
 
 .header-hover {
@@ -32,9 +36,18 @@
     line-height: 100rpx;
 }
 
+.content {
+    margin-top: 120rpx;
+    margin-bottom: 140rpx;
+}
+
 .menu {
+    position: fixed;
     width: 100%;
+    bottom: 0;
     display: flex;
+    background: rgba(255, 255, 255, 0.747);
+    flex-direction: row;
 }
 
 .menu-item {
