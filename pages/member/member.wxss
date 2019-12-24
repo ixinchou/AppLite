@@ -1,4 +1,42 @@
 /* pages/member/member.wxss */
-
 @import '../common/common.wxss';
 @import '../../weui.wxss';
+
+.content {
+    margin-top: 90rpx;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.member-items {
+    width: 100%;
+    padding-left: 5rpx;
+    padding-right: 5rpx;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.member-item {
+    border-radius: 10rpx;
+    background: #fff;
+    margin-bottom: 10rpx;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    vertical-align: middle;
+}
+
+.member-item-hover {
+    background: #eee;
+}
+
+.userinfo-avatar {
+    background-color: #f8f8f8;
+    width: 90rpx;
+    height: 90rpx;
+    margin: 10rpx;
+    border-radius: 50%;
+}
+

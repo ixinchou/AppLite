@@ -121,6 +121,7 @@ App({
                 obj.loginCode = login_code;
                 obj.nickName = this.globalData.userInfo.nickName;
                 obj.gender = this.globalData.userInfo.gender;
+                obj.avatar = this.globalData.userInfo.avatarUrl;
                 api.post(api.wxInfo, obj, function(res) {
                     // console.log(res);
                     // 本地保存服务器生成的sessionId

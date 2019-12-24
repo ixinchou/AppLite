@@ -1,8 +1,21 @@
 <!--pages/member/member.wxml-->
 <view class="main">
-    <view class="page__bd">
+    <view class="page__bd" style="position:fixed;width:100%;">
         <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
     </view>
     <view class="content">
+        <view class="member-items">
+            <view class="weui-flex" style="background: #FFFFFF; border-radius: 10rpx;">
+                <view>
+                    <image class="userinfo-avatar" mode="cover"></image>
+                </view>
+                <view class="weui-flex__item">
+                    <view class="placeholder">weui</view>
+                </view>
+                <view>
+                    <view class="placeholder">weui</view>
+                </view>
+            </view>
+        </view>
     </view>
 </view>

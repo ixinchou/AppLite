@@ -28,6 +28,10 @@ page {
     color: rgba(0, 0, 0, 0.3);
 }
 
+.fixed-content {
+    display: flex;
+}
+
 .bottom-bar {
     display: flex;
     flex-direction: row;
