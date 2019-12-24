@@ -7,6 +7,13 @@ const page = require("page.js");
 
 App({
     onLaunch: function() {
+        wx.getSystemInfo({
+            success: res => {
+                if (!!res && res.brand === 'devtools') {
+                    this.globalData.dev = true;
+                }
+            }
+        });
         // 查看本地存储中是否有 session 信息
         var that = this;
         var session = storage.get(storage.IXCHOU_SESSION);
@@ -50,6 +57,8 @@ App({
     },
     globalData: {
         api: api,
+        // 是否开发模式
+        dev: false,
         storage: storage,
         editor: editor,
         file: file,

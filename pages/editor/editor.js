@@ -7,6 +7,7 @@ Page({
      */
     data: {
         content: null,
+        dev: false, // 是否在开 IDE 模式中
         formats: {},
         // 附件列表
         attachments: [],
@@ -22,7 +23,8 @@ Page({
      */
     onLoad: function(options) {
         this.setData({
-            content: app.editor.getContent()
+            content: app.editor.getContent(),
+            dev: app.dev
         });
         const platform = wx.getSystemInfoSync().platform
         const isIOS = platform === 'ios'
@@ -215,7 +217,7 @@ Page({
             text: formatDate
         })
     },
-    chooseFile:function(type){
+    chooseFile: function(type) {
         const that = this;
         app.file.choose({
             type: type,
@@ -256,8 +258,8 @@ Page({
             width: '90%'
         });
     },
-    insertUploadedVideo(url){
-        
+    insertUploadedVideo(url) {
+
     },
     cacheAttachmentIds: function(data) {
         let exists = this.data.attachments.filter(item => {
@@ -271,7 +273,7 @@ Page({
             });
         }
     },
-    insertVideo:function(){
+    insertVideo: function() {
         this.chooseFile('video');
     }
 })
