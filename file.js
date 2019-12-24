@@ -1,4 +1,4 @@
-var api = require('./config.js');
+var api = require('./api.js');
 var file = {
     option: {
         type: 'image', // 文件选择类型，可选为 image/video

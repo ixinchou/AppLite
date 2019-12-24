@@ -1,7 +1,5 @@
 /* pages/editor/editor.wxss */
 
-/* @import "./assets/iconfont.wxss"; */
-
 .container {
     position: absolute;
     top: 0;

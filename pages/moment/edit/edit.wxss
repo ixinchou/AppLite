@@ -14,10 +14,6 @@
     padding: 10px;
 }
 
-.placeholder {
-    color: rgba(0, 0, 0, 0.3);
-}
-
 .icon-add-1 {
     color: #24c903;
     font-size: 35rpx;

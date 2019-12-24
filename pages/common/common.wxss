@@ -24,6 +24,10 @@ page {
     padding: 10rpx;
 }
 
+.placeholder {
+    color: rgba(0, 0, 0, 0.3);
+}
+
 .bottom-bar {
     display: flex;
     flex-direction: row;
@@ -69,4 +73,9 @@ page {
 .image {
     background: #efefef;
     border-radius: 10rpx;
+}
+
+.money {
+    color: orange;
+    margin-right: 2px;
 }

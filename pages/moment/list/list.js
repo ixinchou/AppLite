@@ -27,7 +27,7 @@ Page({
         this.setData({
             uploadAble: !!app.myInfo ? app.myInfo.uploadAble : false,
             type: type,
-            http: app.api.http,
+            http: app.api.http + "/",
             name: type == 2 ? "学生才艺" : "教师风采"
         });
         wx.setNavigationBarTitle({
@@ -108,6 +108,11 @@ Page({
             let obj = res.data;
             let array = this.data.items;
             obj.list.forEach(item => {
+                let len = 4 - item.attachments.length;
+                item.blanks = [];
+                for (let i = 0; i < len; i++) {
+                    item.blanks.push(i + "");
+                }
                 array.push(item);
             });
             that.setData({

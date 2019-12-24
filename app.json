@@ -4,7 +4,6 @@
         "pages/main/main",
         "pages/school/schoolMotto",
         "pages/person/person",
-        "pages/logs/logs",
         "pages/editor/editor",
         "pages/member/member",
         "pages/speciality/list/list",

@@ -152,12 +152,13 @@ Page({
         let that = this;
         this.editorCtx.getContents({
             success: function(res) {
-                app.storage.set(app.storage.EDITOR_CONTENT, res.html);
+                let html = res.html.replace(/ width="90%"/g, ' width="100%"');
+                app.storage.set(app.storage.EDITOR_CONTENT, html);
                 // 添加或更新图文内容
                 let data = that.data.content;
                 app.api.post(data.id > 0 ? app.api.contentEdit : app.api.contentAdd, {
                     id: data.id,
-                    content: res.html
+                    content: html
                 }, res => {
                     app.page.setPreviousData({
                         content: res.data,
@@ -214,10 +215,10 @@ Page({
             text: formatDate
         })
     },
-    insertImage() {
+    chooseFile:function(type){
         const that = this;
         app.file.choose({
-            type: 'image',
+            type: type,
             count: 1,
             success: res => {
                 console.log(res);
@@ -245,12 +246,18 @@ Page({
             }
         });
     },
+    insertImage() {
+        this.chooseFile('image');
+    },
     insertUploaded(url) {
         console.log(url);
         this.editorCtx.insertImage({
             src: app.api.http + "/" + url,
             width: '90%'
         });
+    },
+    insertUploadedVideo(url){
+        
     },
     cacheAttachmentIds: function(data) {
         let exists = this.data.attachments.filter(item => {
@@ -263,5 +270,8 @@ Page({
                 attachments: array
             });
         }
+    },
+    insertVideo:function(){
+        this.chooseFile('video');
     }
 })

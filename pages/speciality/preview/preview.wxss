@@ -1,29 +1,10 @@
 /* pages/speciality/preview/preview.wxss */
+@import '../../common/common.wxss';
 @import '../../../weui.wxss';
-
-page {
-    background-color: #f8f8f8;
-    height: 100%;
-}
-
-.main {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
 
 .image {
     background: #efefef;
     border-radius: 10rpx;
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    padding: 20rpx;
-    font-size: 35rpx;
 }
 
 .fee {
@@ -39,29 +20,4 @@ page {
 .money {
     color: orange;
     margin-right: 2px;
-}
-
-.bottom-bar {
-    display: flex;
-    flex-direction: row;
-    position: fixed;
-    bottom: 0;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100rpx;
-    background-color: rgba(234, 234, 234, 0.8);
-}
-
-.bottom-bar-hover {
-    background-color: rgba(224, 224, 224, 0.8);
-}
-
-.bottom-bar-icon-container {
-    margin-right: 10rpx;
-}
-
-.bottom-bar-icon {
-    line-height: 100rpx;
-    color: #0151b9;
 }

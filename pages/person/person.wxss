@@ -1,15 +1,6 @@
 /* pages/person/person.wxss */
 
-page {
-    background-color: #f8f8f8;
-    height: 100%;
-}
-
-.main {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
+@import '../common/common.wxss';
 
 .header {
     display: flex;

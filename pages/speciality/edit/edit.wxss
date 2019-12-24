@@ -13,15 +13,6 @@
     padding: 10px;
 }
 
-.placeholder {
-    color: rgba(0, 0, 0, 0.3);
-}
-
-.money {
-    color: orange;
-    margin-right: 2px;
-}
-
 .item-cover {
     display: flex;
     flex-direction: row;
@@ -76,8 +67,6 @@
 .image {
     width: 150rpx;
     height: 150rpx;
-    background: #f7f7f7;
-    border-radius: 10rpx;
 }
 
 textarea {
@@ -88,29 +77,4 @@ textarea {
 .textarea-wrp {
     padding: 0 25rpx;
     background-color: #fff;
-}
-
-.bottom-bar {
-    display: flex;
-    flex-direction: row;
-    position: fixed;
-    bottom: 0;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100rpx;
-    background-color: rgba(240, 240, 240, 0.7);
-}
-
-.bottom-bar-hover {
-    background-color: #f0f0f0;
-}
-
-.bottom-bar-icon-container {
-    margin-right: 10rpx;
-}
-
-.bottom-bar-icon {
-    line-height: 100rpx;
-    color: #0151b9;
 }

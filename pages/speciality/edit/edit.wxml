@@ -4,7 +4,7 @@
         <view class="item">
             <text class="item-title">名称</text>
             <view class="item-inputbox">
-                <input class="weui-input" value="{{name}}" bindinput="bindInput" id="name" placeholder="培训技能名称" />
+                <input class="weui-input" value="{{name}}" bindinput="bindInput" id="name" placeholder="课程名称" />
             </view>
         </view>
         <view class="item">

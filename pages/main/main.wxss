@@ -83,17 +83,3 @@
     margin-top: 5rpx;
     font-size: 25rpx;
 }
-
-.swiper {
-    width: 100%;
-}
-
-.swiper-item {
-    width: 100%;
-}
-
-.body {
-    height: 100rpx;
-    width: 100%;
-    background: #eee;
-}

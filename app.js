@@ -1,5 +1,5 @@
 //app.js
-const api = require("config.js");
+const api = require("api.js");
 const storage = require("storage.js");
 const editor = require("editor.js");
 const file = require("file.js");

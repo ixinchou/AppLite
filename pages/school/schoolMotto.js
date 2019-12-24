@@ -35,11 +35,20 @@ Page({
      */
     onShow: function() {
         if (this.data.isEditorReturn > 0) {
-            // 编辑器返回，则重新显示编辑器返回的内容
-            this.setData({
-                html: !!this.data.content ? this.data.content.content : "",
-                // 新建添加完毕之后，本地缓存数据清空
-                isEditorReturn: 0
+            // 编辑器返回，则需要先提交编辑器中的内容到服务器上，然后再拉取服务器中的内容并显示
+            let self = this;
+            var obj = {};
+            obj.sessionId = app.storage.get(app.storage.IXCHOU_SESSION);
+            obj.contentId = this.data.content.id;
+            let mt = this.data.motto;
+            var isNew = null == mt || null == mt.id || mt.id <= 0;
+            obj.id = isNew ? 0 : mt.id;
+            // 重新发布简介
+            app.api.post(isNew ? app.api.mottoAdd : app.api.mottoEdit, obj, res => {
+                self.resetExistMotto(res.data);
+                self.setData({
+                    isEditorReturn: 0
+                });
             });
             // 标记简介内容已修改，需要重新拉取再显示
             app.mottoChanged = true;
