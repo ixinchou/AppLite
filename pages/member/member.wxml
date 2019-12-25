@@ -1,12 +1,12 @@
 <!--pages/member/member.wxml-->
 <view class="main">
     <view class="page__bd" style="position:fixed;width:100%;">
-        <mp-searchbar bindselectresult="selectResult" bindclear="onSearchClear" search="{{search}}"></mp-searchbar>
+        <mp-searchbar bindselectresult="selectResult" bindclear="onSearchClear" cancelText="" search="{{search}}"></mp-searchbar>
         <view style="font-size: 20rpx;width:100%;display:flex;flex-direction: column;align-items: center;" class="placeholder">支持姓名、手机号、微信昵称两个字以上模糊搜索</view>
     </view>
     <view class="content">
         <view class="member-items">
-            <block wx:for="{{items}}" wx:key="{{item.memberId}}">
+            <block wx:for="{{items}}" wx:key="id">
                 <view class="weui-flex member-item" hover-class="member-item-hover" data-item="{{item}}" bindtap="onItemClick">
                     <view>
                         <image wx:if="{{ !item.wxAvatar || '' == item.wxAvatar }}" class="userinfo-avatar" mode="cover" src="/images/ixchou_logo_cycle.png" style="filter: grayscale(100%) opacity(30%);"></image>

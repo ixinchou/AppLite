@@ -91,17 +91,32 @@ Page({
 
     /**搜索 */
     search: function(value) {
-        if (app.api.isEmpty(value) || value.length >= 2) {
+        let empty = app.api.isEmpty(value);
+        if (empty || value.length >= 2) {
             // 重新拉取第一页
             this.setData({
                 pageIndex: 1,
-                searchText: app.api.isEmpty(value) ? '' : value
+                searchText: empty ? '' : value
             });
             this.fetchingMembers(false);
         }
+        return new Promise((resolve, reject) => {
+            resolve([]);
+        });
     },
     /**搜索框清除事件 */
     onSearchClear: function() {
+        this.setData({
+            pageIndex: 1,
+            searchText: ''
+        });
+        this.fetchingMembers(false);
+    },
+    onFocus: function() {
+
+    },
+    /**搜索框失去焦点事件 */
+    onBlur: function() {
         this.setData({
             pageIndex: 1,
             searchText: ''
