@@ -1,8 +1,11 @@
 // 主域名
 // var http = "http://192.168.80.173";
-// var host = `${http}:8082`; //"https://edu.ixchou.com";
+// var http = "http://10.141.130.4";
+// var host = `${http}:8082`;
 var http = "https://edu.ixchou.com";
 var host = `${http}`;
+
+var storage = require('./storage.js');
 
 // 配置对象
 var config = {
@@ -131,6 +134,10 @@ var config = {
             url: url,
             method: usedMethod,
             data: params,
+            header: {
+                // 包含 session 信息给服务器以进行鉴权
+                '51aea310ac094bf281205c37a3fc559d': storage.get(storage.IXCHOU_SESSION)
+            },
             success: res => {
                 config.hideLoading();
                 callback(res);
