@@ -22,7 +22,7 @@
                     </view>
                     <view style="display: flex; flex-direction: column; text-align: center;">
                         <text style="font-size: 20rpx;" class="placeholder">管理员</text>
-                        <switch bindchange="onItemSwitchChange" data-item="{{item}}" checked="{{item.uploadAble}}" disabled="{{!!mySession&&mySession===item.sessionId}}"/>
+                        <switch bindchange="onItemSwitchChange" data-item="{{item}}" checked="{{item.uploadAble}}" disabled="{{mySession==item.sessionId}}"/>
                     </view>
                 </view>
                 <view style="height: 10rpx;"></view>

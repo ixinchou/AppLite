@@ -180,7 +180,7 @@ Page({
         if (item.detail.index == 1) {
             // 确定按钮
             app.api.post(app.api.updateMemberUploadAble, {
-                memberId: this.data.currentItem.memberId,
+                sessionId: this.data.currentItem.sessionId,
                 uploadAble: !this.data.currentItem.uploadAble
             }, res => {
                 this.hideDialog(true);
