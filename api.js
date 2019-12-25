@@ -2,7 +2,7 @@
 // var http = "http://192.168.80.173";
 // var host = `${http}:8082`; //"https://edu.ixchou.com";
 var http = "https://edu.ixchou.com";
-var host = `${http}`; 
+var host = `${http}`;
 
 // 配置对象
 var config = {
@@ -27,6 +27,10 @@ var config = {
     findMemberBySessionId: `${host}/api/member/find/`,
     // 更新名字
     updateMemberName: `${host}/api/member/update/name`,
+    /**拉取成员列表 */
+    memberList: `${host}/api/member/list`,
+    /**更改成员的管理员属性 */
+    updateMemberUploadAble: `${host}/api/member/update/upload`,
 
     // 添加孩子的信息
     childAdd: `${host}/api/child/add`,
@@ -99,6 +103,7 @@ var config = {
         wx.showToast({
             title: title,
             icon: icon,
+            mask: true,
             duration: 2000
         });
     },
@@ -112,6 +117,9 @@ var config = {
             return true;
         }
         if ("string" === type) {
+            return obj.length <= 0;
+        }
+        if ("array" === type) {
             return obj.length <= 0;
         }
         return false;

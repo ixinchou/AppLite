@@ -1,6 +1,8 @@
 {
     "usingComponents": {
-        "mp-searchbar": "../../components/searchbar/searchbar"
+        "mp-searchbar": "../../components/searchbar/searchbar",
+        "mp-dialog": "../../components/dialog/dialog"
     },
-    "navigationBarTitleText": "会员列表"
+    "navigationBarTitleText": "会员列表",
+    "enablePullDownRefresh": true
 }

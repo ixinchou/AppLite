@@ -1,21 +1,38 @@
 <!--pages/member/member.wxml-->
 <view class="main">
     <view class="page__bd" style="position:fixed;width:100%;">
-        <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
+        <mp-searchbar bindselectresult="selectResult" bindclear="onSearchClear" search="{{search}}"></mp-searchbar>
+        <view style="font-size: 20rpx;width:100%;display:flex;flex-direction: column;align-items: center;" class="placeholder">支持姓名、手机号、微信昵称两个字以上模糊搜索</view>
     </view>
     <view class="content">
         <view class="member-items">
-            <view class="weui-flex" style="background: #FFFFFF; border-radius: 10rpx;">
-                <view>
-                    <image class="userinfo-avatar" mode="cover"></image>
+            <block wx:for="{{items}}" wx:key="{{item.memberId}}">
+                <view class="weui-flex member-item" hover-class="member-item-hover" data-item="{{item}}" bindtap="onItemClick">
+                    <view>
+                        <image wx:if="{{ !item.wxAvatar || '' == item.wxAvatar }}" class="userinfo-avatar" mode="cover" src="/images/ixchou_logo_cycle.png" style="filter: grayscale(100%) opacity(30%);"></image>
+                        <image wx:else class="userinfo-avatar" mode="cover" src="{{item.wxAvatar}}"></image>
+                    </view>
+                    <view class="weui-flex__item">
+                        <view style="display: flex; flex-direction: column; margin-left: 10rpx; padding-top: 10rpx; padding-bottom: 10rpx;">
+                            <view>姓名：{{!!item.userName?item.userName:'未绑定'}}</view>
+                            <view class="placeholder" style="font-size: 22rpx;">手机号码：{{!!item.phone? item.phone: '未获取'}}</view>
+                            <view class="placeholder" style="font-size: 22rpx;">昵　　称：{{item.wxNickName}}</view>
+                            <view class="placeholder" style="font-size: 22rpx;">注册时间：{{item.registerTime}}</view>
+                        </view>
+                    </view>
+                    <view style="display: flex; flex-direction: column; text-align: center;">
+                        <text style="font-size: 20rpx;" class="placeholder">管理员</text>
+                        <switch bindchange="onItemSwitchChange" data-item="{{item}}" checked="{{item.uploadAble}}" disabled="{{!!mySession&&mySession===item.sessionId}}"/>
+                    </view>
                 </view>
-                <view class="weui-flex__item">
-                    <view class="placeholder">weui</view>
-                </view>
-                <view>
-                    <view class="placeholder">weui</view>
-                </view>
-            </view>
+                <view style="height: 10rpx;"></view>
+            </block>
         </view>
+        <text wx:if="{{!more && items.length > 0}}" class="more">----- 后面已经没有了 ------</text>
+        <text wx:if="{{!!searchText && items.length <= 0}}" class="more">----- 没有找到合适的内容 ------</text>
     </view>
+    
+    <mp-dialog title="管理员权限" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{dialogButtons}}">
+        <view>{{dialogContent}}</view>
+    </mp-dialog>
 </view>

@@ -73,8 +73,7 @@ Page({
     onPullDownRefresh: function() {
         // 重新设置拉取第一页
         this.setData({
-            pageIndex: 1,
-            items: []
+            pageIndex: 1
         });
         this.fetchingMoments(true);
     },
@@ -106,7 +105,7 @@ Page({
             type: this.data.type
         }, res => {
             let obj = res.data;
-            let array = this.data.items;
+            let array = obj.pageIndex == 1 ? [] : this.data.items;
             obj.list.forEach(item => {
                 let len = 4 - item.attachments.length;
                 item.blanks = [];

@@ -62,7 +62,7 @@ Page({
             var that = this;
             // 拉取我添加的孩子列表
             app.api.get(app.api.childList + (!!app.myInfo ? app.myInfo.sessionId : ""), null, function(res) {
-                console.log(res);
+                //console.log(res);
                 var list = res.data;
                 for (let item of list) {
                     var birthday = item.birthday.substring(0, 10);
@@ -142,7 +142,7 @@ Page({
     },
     getPhoneNumber: function(e) {
         var that = this;
-        console.log(e);
+        //console.log(e);
         // wx.checkSession({
         //     success: res => {
         //         console.log("session 未过期，可以直接使用");
@@ -161,7 +161,7 @@ Page({
         param.encryptedData = e.detail.encryptedData;
         param.sessionId = app.myInfo.sessionId;
         app.api.post(app.api.wxPhone, param, function(e) {
-            console.log(e);
+            //console.log(e);
             // 本地全局缓存我的详细信息
             app.myInfo = e.data;
             var menu = that.data.menus;
@@ -258,7 +258,7 @@ Page({
         // 向远程服务器添加一条孩子的信息
         var that = this;
         app.api.post(app.api.childAdd, child, function(res) {
-            console.log(res)
+            //console.log(res)
             var chs = that.data.children;
             child.id = chs.length + 1;
             chs.push(child);
@@ -285,7 +285,7 @@ Page({
                 success(res) {
                     if (res.confirm) {
                         app.api.post(app.api.childDelete + del.id, null, function(data) {
-                            console.log("删除已登记的孩子的信息");
+                            //console.log("删除已登记的孩子的信息");
                             var source = that.data.children;
                             source.splice(del, 1);
                             that.setData({
