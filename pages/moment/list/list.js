@@ -140,9 +140,10 @@ Page({
     onItemClick: function(item) {
         //console.log(item.currentTarget.dataset.item);
         // 转到详情页
-        let id = item.currentTarget.dataset.item.id;
+        let json = JSON.stringify(item.currentTarget.dataset.item);
+        app.storage.setLargeData(json);
         wx.navigateTo({
-            url: '/pages/moment/preview/preview?data=' + id,
+            url: '/pages/moment/preview/preview',
         });
     }
 })

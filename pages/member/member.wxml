@@ -31,8 +31,4 @@
         <text wx:if="{{!more && items.length > 0}}" class="more">----- 后面已经没有了 ------</text>
         <text wx:if="{{!!searchText && items.length <= 0}}" class="more">----- 没有找到合适的内容 ------</text>
     </view>
-    
-    <mp-dialog title="管理员权限" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{dialogButtons}}">
-        <view>{{dialogContent}}</view>
-    </mp-dialog>
 </view>

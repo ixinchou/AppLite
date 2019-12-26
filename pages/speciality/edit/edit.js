@@ -18,6 +18,9 @@ Page({
         classTypes: [],
         classIndex: 0,
         classFee: 0,
+        classRebate: 0,
+        rebated: 0,
+        classShowOriginal: false,
         image_src: '',
         html: '',
         isEditorReturn: 0
@@ -27,10 +30,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        let data = options.data;
+        let data = app.storage.get(app.storage.LARGE_CONTENT);
         var obj = null;
         if (!app.api.isEmpty(data)) {
-            obj = JSON.parse(options.data);
+            obj = JSON.parse(data);
         }
         this.setData({
             uploadAble: !!app.myInfo ? app.myInfo.uploadAble : false,
@@ -47,7 +50,7 @@ Page({
             that.setData({
                 classTypes: res.data.list
             });
-            if(!!that.data.course){
+            if (!!that.data.course) {
                 that.setData({
                     classIndex: that.getTermIndex(that.data.course.classType)
                 });
@@ -59,14 +62,22 @@ Page({
         if (null == obj) {
             return;
         }
+        let fee = !!obj ? (obj.fee / 100) : 0;
+        let rebate = !!obj ? obj.rebate : 0;
         this.setData({
             name: !!obj ? obj.name : '',
             classIndex: !!obj ? this.getTermIndex(obj.classType) : 0,
             time: !!obj ? obj.classTime : '',
-            classFee: !!obj ? (obj.fee / 100) : 0,
+            classFee: fee,
+            classRebate: !!obj ? obj.rebate : 0,
+            rebated: this.calculateRebated(fee, rebate),
+            classShowOriginal: !!obj ? obj.showOriginalPrice : false,
             html: !!this.data.content ? this.data.content.content : '',
             image_src: !!this.data.cover ? (this.data.http + this.data.cover.url) : ''
         });
+    },
+    calculateRebated: function(fee, rebate) {
+        return (fee * (100 - rebate) / 100).toFixed(2);
     },
     getTermIndex: function(tid) {
         let val = 0;
@@ -175,9 +186,15 @@ Page({
             classIndex: e.detail.value
         });
     },
+    onSwitchChange: function(e) {
+        this.setData({
+            classShowOriginal: e.detail.value
+        });
+    },
     bindInput: function(e) {
         var id = e.currentTarget.id;
         var value = e.detail.value;
+        let val = 0;
         switch (id) {
             case "name":
                 this.setData({
@@ -185,8 +202,27 @@ Page({
                 });
                 break;
             case "fee":
+                val = parseInt(value);
+                if (isNaN(val)) {
+                    val = 0;
+                }
                 this.setData({
-                    classFee: parseInt(value)
+                    classFee: val
+                });
+                this.setData({
+                    rebated: this.calculateRebated(this.data.classFee, this.data.classRebate)
+                });
+                break;
+            case "rebate":
+                val = parseInt(value);
+                if (isNaN(val)) {
+                    val = 0;
+                }
+                this.setData({
+                    classRebate: val <= 0 ? 0 : (val >= 100 ? 100 : val)
+                });
+                this.setData({
+                    rebated: this.calculateRebated(this.data.classFee, this.data.classRebate)
                 });
                 break;
             case "time":
@@ -208,17 +244,22 @@ Page({
             app.api.toast("名称不能为空", "none");
             return;
         }
-        let isNew = !!this.data.course ? false : true;
+        let that = this;
+        let isNew = !!that.data.course ? false : true;
         app.api.post(isNew ? app.api.courseAdd : app.api.courseEdit, {
-            id: !!this.data.course ? this.data.course.id : 0,
-            name: this.data.name,
-            cover: !!this.data.cover ? this.data.cover.id : 0,
-            classType: this.data.classTypes[this.data.classIndex].id,
-            classTime: this.data.time,
-            classFee: this.data.classFee * 100,
-            content: !!this.data.content ? this.data.content.id : 0
+            id: !!that.data.course ? that.data.course.id : 0,
+            name: that.data.name,
+            cover: !!that.data.cover ? that.data.cover.id : 0,
+            classType: that.data.classTypes[that.data.classIndex].id,
+            classTime: that.data.time,
+            classFee: that.data.classFee * 100,
+            classRebate: that.data.classRebate,
+            showOriginalPrice: that.data.classShowOriginal ? 1 : 0,
+            content: !!that.data.content ? that.data.content.id : 0
         }, res => {
             // 设置上一页的内容
+            res.data.cover = that.data.cover;
+            res.data.content = that.data.content;
             app.page.setPreviousData({
                 item: res.data,
                 isEditorReturn: 1

@@ -72,8 +72,9 @@ Page({
         //console.log(item.currentTarget.dataset.item);
         // 转到详情页
         let json = JSON.stringify(item.currentTarget.dataset.item);
+        app.storage.setLargeData(json);
         wx.navigateTo({
-            url: '/pages/speciality/preview/preview?data=' + json,
+            url: '/pages/speciality/preview/preview',
         });
     },
     fetchingCourses: function() {

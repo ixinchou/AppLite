@@ -1,7 +1,7 @@
 <!--pages/speciality/list/list.wxml-->
 <view class="main">
     <view class="content">
-        <text wx:if="{{0==skills.length}}">请先添加特长分类...</text>
+        <text wx:if="{{0==skills.length}}">请先添加课程分类...</text>
         <view class="weui-panel weui-panel_access">
             <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{skills}}" wx:key="id" bindtap="onItemClick" data-item="{{item}}">

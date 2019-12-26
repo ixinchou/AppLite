@@ -4,7 +4,7 @@
         <view class="item">
             <text class="item-title">名称</text>
             <view class="item-inputbox">
-                <input class="weui-input" value="{{name}}" bindinput="bindInput" id="name" placeholder="课程名称" />
+                <input class="weui-input" value="{{name}}" confirm-type="next" bindinput="bindInput" id="name" placeholder="课程名称" />
             </view>
         </view>
         <view class="item">
@@ -21,9 +21,22 @@
         </view>
         <view class="item">
             <text class="item-title">学费</text>
-            <view class="item-inputbox item-cover">
+            <view class="item-inputbox item-cover" style="align-items: center;">
                 <text class="money">￥</text>
-                <input class="weui-input" value="{{classFee}}" bindinput="bindInput" id="fee" type="number" placeholder="填写学费" />
+                <input class="weui-input" value="{{classFee}}" bindinput="bindInput" confirm-type="next" id="fee" type="number" placeholder="填写学费" />
+            </view>
+        </view>
+        <view class="item">
+            <text class="item-title">折扣率百分比(0-100%)，折扣后约{{rebated}}</text>
+            <view class="item-inputbox item-cover">
+                <input class="weui-input" value="{{classRebate}}" maxlength="3" confirm-type="next" bindinput="bindInput" id="rebate" type="number" placeholder="折扣率百分比" />
+            </view>
+        </view>
+        <view class="item">
+            <text class="item-title">显示折扣前价格(带删除线)</text>
+            <view class="item-inputbox item-cover" style="align-items: center; width: 100%; display: flex; ">
+                <view class="placeholder" style="flex-grow: 1;">显示原价格</view>
+                <switch bindchange="onSwitchChange" checked="{{classShowOriginal}}"></switch>
             </view>
         </view>
         <view class="item">

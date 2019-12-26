@@ -7,10 +7,15 @@ Page({
      */
     data: {
         http: '',
+        changed: false,
         item: null,
         cover: null,
         content: null,
         fee: 0.00,
+        actualFee: 0.00,
+        rebate: 0,
+        showOriginal: false,
+        rebatedFee: 0.0,
         time: '',
         html: '<p>没有内容</p>',
         isEditorReturn: 0,
@@ -21,10 +26,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        let data = options.data;
+        let data = app.storage.getLargeData();
         var obj = null;
         if (!app.api.isEmpty(data)) {
-            obj = JSON.parse(options.data);
+            obj = JSON.parse(data);
         }
         this.setData({
             http: app.api.http + '/',
@@ -35,11 +40,16 @@ Page({
     },
     loadItem: function() {
         let obj = this.data.item;
+        let rebate = (100 - (!!obj ? obj.rebate : 0)) / 100;
+        let fee = (!!obj ? obj.fee : 0) / 100;
         this.setData({
-            cover: obj.cover,
-            content: obj.content,
+            cover: !!obj.cover ? obj.cover : null,
+            content: !!obj.content ? obj.content : null,
             html: !!obj.content ? obj.content.content : "",
-            fee: ((!!obj ? obj.fee : 0) / 100).toFixed(2),
+            fee: (fee).toFixed(2),
+            rebate: rebate,
+            rebated: (fee * rebate).toFixed(2),
+            showOriginal: !!obj ? (obj.showOriginalPrice != 0) : false,
             time: (!!obj && !!obj.term) ? obj.term.name : ""
         });
         wx.setNavigationBarTitle({
@@ -60,6 +70,7 @@ Page({
         if (this.data.isEditorReturn > 0) {
             this.loadItem();
             this.setData({
+                changed: true,
                 isEditorReturn: 0
             });
         }
@@ -76,7 +87,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function() {
-
+        app.storage.setLargeData("");
     },
 
     /**
@@ -110,9 +121,10 @@ Page({
         this.setData({
             isEditorReturn: 0
         });
-        let json = JSON.stringify(this.data.item);
+        //let json = JSON.stringify(this.data.item);
+        // 直接使用 storage 缓存中的数据进行编辑
         wx.navigateTo({
-            url: '/pages/speciality/edit/edit?data=' + json,
+            url: '/pages/speciality/edit/edit',
         });
     },
     /**

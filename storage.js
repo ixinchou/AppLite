@@ -24,6 +24,8 @@ var storage = {
      * 本地缓存的课程id
      */
     COURSE_ID: `ixchou_course_id`,
+    /**本地缓存的超大数据内容 */
+    LARGE_CONTENT: `ixchou_large_content`,
     /**
      * 获取本地存储的内容
      */
@@ -63,6 +65,14 @@ var storage = {
                 }
             }
         })
+    },
+    /**缓存超大数据内容 */
+    setLargeData: function(largeData) {
+        this.set(this.LARGE_CONTENT, largeData);
+    },
+    /**读取缓存的超大内容 */
+    getLargeData: function() {
+        return this.get(this.LARGE_CONTENT);
     }
 }
 module.exports = storage;

@@ -16,9 +16,10 @@
                 </view>
                 <view class="fee">
                     <text class="money">{{time}}报名费</text>
-                    <text class="money">￥{{fee}}</text>
+                    <text class="money" wx:if="{{showOriginal}}" style="text-decoration: line-through;">原价￥{{fee}}</text>
+                    <text class="money">￥{{rebated}}</text>
                 </view>
-                <rich-text nodes="{{html}}" class="content"></rich-text>
+                <rich-text nodes="{{html}}" class="content" style="margin-top: 20rpx;"></rich-text>
             </view>
         </view>
     </view>

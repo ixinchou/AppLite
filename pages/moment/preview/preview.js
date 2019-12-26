@@ -14,12 +14,16 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        let value = options.data;
-        var id = parseInt(value);
+        let value = app.storage.getLargeData();
+        let obj = JSON.parse(value);
         this.setData({
-            id: id
+            id: obj.id,
+            html: !!obj && !!obj.content ? obj.content.content : '<p>没有内容...</p>'
         });
-        this.fetchingMoment();
+        wx.setNavigationBarTitle({
+            title: !!obj ? obj.title : '没有内容',
+        });
+        //this.fetchingMoment();
     },
 
     /**

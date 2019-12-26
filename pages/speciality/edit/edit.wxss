@@ -2,6 +2,10 @@
 @import '../../common/common.wxss';
 @import '../../../weui.wxss';
 
+.content {
+    margin-bottom: 140rpx;
+}
+
 .item-title {
     font-size: 20rpx;
     margin-bottom: 10rpx;

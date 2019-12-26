@@ -9,6 +9,7 @@ Page({
         mySession: app.storage.get(app.storage.IXCHOU_SESSION),
         pageIndex: 1,
         searchText: '',
+        loading: false,
         more: false,
         items: [],
         dialogButtons: [{
@@ -16,8 +17,6 @@ Page({
         }, {
             text: '确定'
         }],
-        dialogContent: '',
-        dialogShow: false,
         currentItem: null
     },
 
@@ -98,7 +97,9 @@ Page({
                 pageIndex: 1,
                 searchText: empty ? '' : value
             });
-            this.fetchingMembers(false);
+            if (!this.data.loading) {
+                this.fetchingMembers(false);
+            }
         }
         return new Promise((resolve, reject) => {
             resolve([]);
@@ -125,7 +126,13 @@ Page({
     },
     /**拉取用户列表 */
     fetchingMembers: function(stopable) {
+        if (this.data.loading) {
+            app.api.toast('别着急，请稍候...', 'none');
+            return;
+        }
         let that = this;
+        // 标记正在加载内容还未返回
+        that.switchLoading(true);
         app.api.get(app.api.memberList, {
             pageIndex: this.data.pageIndex,
             query: this.data.searchText
@@ -143,6 +150,18 @@ Page({
                 // 停止页面的下拉刷新
                 wx.stopPullDownRefresh();
             }
+            // 标记加载结束
+            that.switchLoading(false);
+        }, err => {
+            // 标记加载结束
+            that.switchLoading(false);
+        });
+    },
+
+    /**更改加载状态 */
+    switchLoading: function(loading) {
+        this.setData({
+            loading: loading
         });
     },
 
@@ -170,32 +189,42 @@ Page({
         let content = `您确实要将 ${name} ${type}吗？`;
         this.setData({
             currentItem: obj,
-            dialogContent: content,
-            dialogShow: true
+            //dialogContent: content,
+            //dialogShow: true
         });
+        this.modalConfirm(content);
     },
 
     /**修改管理员权限确认框 */
-    tapDialogButton: function(item) {
-        if (item.detail.index == 1) {
-            // 确定按钮
-            app.api.post(app.api.updateMemberUploadAble, {
-                sessionId: this.data.currentItem.sessionId,
-                uploadAble: !this.data.currentItem.uploadAble
-            }, res => {
-                this.hideDialog(true);
-            }, err => {
-                this.hideDialog(false);
-            });
-        } else {
-            this.hideDialog(false);
-        }
+    modalConfirm: function(content) {
+        let that = this;
+        wx.showModal({
+            title: '修改管理员权限',
+            content: content,
+            confirmText: "确定",
+            cancelText: "取消",
+            success(res) {
+                if (res.confirm) {
+                    // 确定按钮
+                    app.api.post(app.api.updateMemberUploadAble, {
+                        sessionId: that.data.currentItem.sessionId,
+                        uploadAble: !that.data.currentItem.uploadAble
+                    }, res => {
+                        that.hideDialog(true);
+                    }, err => {
+                        that.hideDialog(false);
+                    });
+                } else {
+                    that.hideDialog(false);
+                }
+            }
+        });
     },
     hideDialog: function(updated) {
         let obj = this.data.currentItem;
         let index = -1;
         this.data.items.forEach((item, idx) => {
-            if (item.memberId == obj.memberId) {
+            if (item.sessionId == obj.sessionId) {
                 index = idx;
                 return;
             }
