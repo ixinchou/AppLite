@@ -9,7 +9,7 @@ Page({
      */
     data: {
         userInfo: {},
-        menus: [{
+        dft_menus: [{
             id: 1,
             icon: "xingming",
             text: "您的名字",
@@ -31,6 +31,7 @@ Page({
             admin: true,
             dftValue: "您可以查看用户列表"
         }],
+        menus:[],
         children: [],
         dialogShowning: false,
         singleInputDialogSHowning: false,
@@ -47,16 +48,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        var isAdmin = null == app.myInfo ? false : app.myInfo.uploadAble;
-        var menu = this.data.menus.filter((item) => {
-            return (isAdmin ? item.id > 0 : item.admin === false);
-        });
-        menu[0].value = (null == app.myInfo ? "" : app.myInfo.userName);
-        menu[1].value = (null == app.myInfo ? "" : app.myInfo.phone);
-        this.setData({
-            userInfo: app.userInfo,
-            menus: menu
-        });
+        this.refreshMyInfo();
         if (app.children.length <= 0) {
             // 没有拉取过孩子信息，则这里拉取并缓存
             var that = this;
@@ -78,6 +70,19 @@ Page({
                 children: app.children
             });
         }
+    },
+
+    refreshMyInfo: function() {
+        var isAdmin = null == app.myInfo ? false : app.myInfo.uploadAble;
+        var menu = this.data.dft_menus.filter((item) => {
+            return (isAdmin ? item.id > 0 : item.admin === false);
+        });
+        menu[0].value = (null == app.myInfo ? "" : app.myInfo.userName);
+        menu[1].value = (null == app.myInfo ? "" : app.myInfo.phone);
+        this.setData({
+            userInfo: app.userInfo,
+            menus: menu
+        });
     },
 
     /**
@@ -129,6 +134,17 @@ Page({
      */
     onShareAppMessage: function() {
 
+    },
+    /**同步我的信息 */
+    fetchingMyDetails: function() {
+        var that = this;
+        // 拉取服务器上的用户信息
+        let session = app.storage.get(app.storage.IXCHOU_SESSION);
+        app.api.get(app.api.findMemberBySessionId + session, null, function(res) {
+            // 缓存我的信息
+            app.myInfo = res.data;
+            that.refreshMyInfo();
+        });
     },
     menuItemClick: function(e) {
         var id = e.currentTarget.dataset.index;
