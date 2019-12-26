@@ -3,5 +3,7 @@
         "modal": "../../components/childBindDialog/childBindDialog",
         "modalInput": "../../components/singleInputDialog/singleInputDialog"
     },
-    "navigationBarTitleText": "我的信息"
+    "navigationBarTitleText": "我的信息",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
 }

@@ -1,10 +1,10 @@
 <!--pages/person/person.wxml-->
 <view class="main">
     <view class="header">
-        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover" bindtap="fetchingMyDetails"></image>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-        <text class="userinfo-dercription">　　欢迎您登录注册新筹教育培训学校，您需要在这里绑定您的手机号码以及在校参加学习的孩子信息，您放心，您的这些信息我们都会加密保存。</text>
-        <text class="userinfo-dercription">　　我们承诺『绝对不会』向任何第三方组织和个人透露您的这些私密信息。</text>
+        <text class="userinfo-dercription">　　欢迎您登录并注册成为新筹教育培训学校的成员，您需要在这里绑定您的手机号码以及在校内参加学习的孩子信息，您放心，您的这些信息我们都会加密保存。</text>
+        <text class="userinfo-dercription">　　我们承诺『绝对不会』向任何第三方组织和个人透露您的这些私密内容。</text>
     </view>
     <view class="menus" wx:for="{{menus}}" wx:key="id">
         <view class="menus-item" hover-class="menus-item-hover" bindtap="menuItemClick" data-index="{{item.id}}">

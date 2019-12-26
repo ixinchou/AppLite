@@ -31,7 +31,7 @@ Page({
             admin: true,
             dftValue: "您可以查看用户列表"
         }],
-        menus:[],
+        menus: [],
         children: [],
         dialogShowning: false,
         singleInputDialogSHowning: false,
@@ -119,7 +119,7 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
-
+        this.fetchingMyDetails();
     },
 
     /**
@@ -144,6 +144,11 @@ Page({
             // 缓存我的信息
             app.myInfo = res.data;
             that.refreshMyInfo();
+            // 停止页面的下拉刷新
+            wx.stopPullDownRefresh();
+        }, res => {
+            // 停止页面的下拉刷新
+            wx.stopPullDownRefresh();
         });
     },
     menuItemClick: function(e) {

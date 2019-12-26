@@ -123,6 +123,11 @@ Page({
                 // 停止页面的下拉刷新
                 wx.stopPullDownRefresh();
             }
+        }, res => {
+            if (stopable) {
+                // 停止页面的下拉刷新
+                wx.stopPullDownRefresh();
+            }
         });
     },
 

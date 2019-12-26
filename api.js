@@ -1,9 +1,9 @@
 // 主域名
-var http = "http://192.168.80.173";
+// var http = "http://192.168.80.173";
 // var http = "http://10.141.130.4";
-// var http = "https://edu.ixchou.com";
-// var host = `${http}`;
-var host = `${http}:8082`;
+// var host = `${http}:8082`;
+var http = "https://edu.ixchou.com";
+var host = `${http}`;
 
 var storage = require('./storage.js');
 
@@ -90,15 +90,17 @@ var config = {
 
     // 显示加载中界面
     showLoading: function(title) {
-        wx.showLoading({
-            title: title,
-            mask: true,
-        });
+        // wx.showLoading({
+        //     title: title,
+        //     mask: true,
+        // });
+        wx.showNavigationBarLoading();
     },
 
     // 隐藏加载对话框
     hideLoading: function() {
-        wx.hideLoading();
+        // wx.hideLoading();
+        wx.hideNavigationBarLoading();
     },
 
     // 显示短时间的提示信息

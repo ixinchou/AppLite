@@ -4,5 +4,6 @@
         "mp-dialog": "../../components/dialog/dialog"
     },
     "navigationBarTitleText": "会员列表",
+    "backgroundTextStyle": "dark",
     "enablePullDownRefresh": true
 }

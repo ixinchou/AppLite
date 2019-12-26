@@ -1,4 +1,6 @@
 {
     "usingComponents": {},
-    "navigationBarTitleText": "特长分类"
+    "navigationBarTitleText": "特长分类",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true
 }
