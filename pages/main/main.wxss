@@ -4,7 +4,7 @@
 
 .header {
     width: 100%;
-    background: rgb(147, 243, 22);
+    background: rgb(98, 180, 134);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -14,7 +14,7 @@
 }
 
 .header-hover {
-    background: rgb(136, 224, 21);
+    background: rgb(78, 163, 116);
 }
 
 .user-info-avator {
@@ -70,6 +70,9 @@
     border-radius: 40rpx;
     align-items: center;
     justify-content: center;
+    border-style: solid;
+    border-width: 0rpx;
+    box-shadow: 0px 2px 5px 2px #DDDDDD;
 }
 
 .menu-item-icon {

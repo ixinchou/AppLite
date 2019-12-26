@@ -54,7 +54,7 @@ page {
 
 .bottom-bar-icon {
     line-height: 100rpx;
-    color: #0151b9;
+    color: #07C160;
 }
 
 .more {

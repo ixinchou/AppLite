@@ -1,21 +1,21 @@
 <!--pages/school/schoolMotto.wxml-->
 <view class="main">
-    <view class="motto-content">
+    <view class="content" style="margin-bottom: {{uploadAble?100:0}}rpx;">
         <text wx:if="{{null==motto}}">没有添加简介内容，请先添加...</text>
         <rich-text wx:else nodes="{{html}}"></rich-text>
     </view>
     <view wx:if="{{uploadAble}}">
-        <view class="motto-edit" hover-class="motto-edit-hover" wx:if="{{motto==null}}" bindtap="fireToMottoEdit">
-            <view class="motto-edit-icon">
+        <view class="bottom-bar" hover-class="bottom-bar-hover" wx:if="{{motto==null}}" bindtap="fireToMottoEdit">
+            <view class="bottom-bar-icon">
                 <icon class="ixchou-font ixchou-add-fill motto-icon"></icon>
             </view>
-            <text class="motto-icon" wx:if="{{html==''}}">添加简介</text>
+            <text class="bottom-bar-icon" wx:if="{{html==''}}">添加简介</text>
         </view>
-        <view class="motto-edit" hover-class="motto-edit-hover" wx:if="{{motto!=null}}" bindtap="fireToMottoEdit">
-            <view class="motto-edit-icon">
+        <view class="bottom-bar" hover-class="bottom-bar-hover" wx:if="{{motto!=null}}" bindtap="fireToMottoEdit">
+            <view class="bottom-bar-icon">
                 <icon class="ixchou-font ixchou-add-fill motto-icon"></icon>
             </view>
-            <text class="motto-icon">编辑简介</text>
+            <text class="bottom-bar-icon">编辑简介</text>
         </view>
     </view>
 </view>

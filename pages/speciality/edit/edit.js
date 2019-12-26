@@ -9,6 +9,7 @@ Page({
      */
     data: {
         http: app.api.http + "/",
+        dft_img_src: '/images/ixchou_logo_cycle.png',
         uploadAble: false,
         course: null,
         content: null,

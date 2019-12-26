@@ -44,8 +44,7 @@
     align-items: flex-start;
     font-size: 20rpx;
     width: 100%;
-    font-style: italic;
-    color: #e2e2e2;
+    color: #cccccc;
     flex-direction: column;
 }
 

@@ -51,7 +51,8 @@
                 <view class="image-preview">
                     <button class="ixchou-font ixchou-jia icon-add" hover-class="icon-add-hover" bindtap="chooseImage"></button>
                 </view>
-                <image class="image" src="{{image_src}}"></image>
+                <image class="image" wx:if="{{''==image_src}}" src="{{dft_img_src}}" style="filter: grayscale(100%) opacity(30%);"></image>
+                <image class="image" wx:if="{{!!image_src&&image_src.length>10}}" src="{{image_src}}"></image>
             </view>
         </view>
         <view class="item">
