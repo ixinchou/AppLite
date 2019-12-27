@@ -12,25 +12,25 @@
     </view>
     <view class="menu">
         <view class="menu-item" hover-class="menu-item-hover" bindtap="fireToMotto">
-            <view class="menu-item-icon-cycle" style="background: #62b886;">
+            <view class="menu-item-icon-cycle" style="background: rgb(67,137,168);">
                 <view class="ixchou-font ixchou-jianjie menu-item-icon"></view>
             </view>
             <text class="menu-item-text">新筹简介</text>
         </view>
         <view class="menu-item" hover-class="menu-item-hover" bindtap="fireToSpeciality">
-            <view class="menu-item-icon-cycle" style="background: #D9CFAE;">
+            <view class="menu-item-icon-cycle" style="background: #B89556;">
                 <view class="ixchou-font ixchou-fenlei menu-item-icon"></view>
             </view>
             <text class="menu-item-text">特长分类</text>
         </view>
         <view class="menu-item" hover-class="menu-item-hover" bindtap="fireToTeachers">
-            <view class="menu-item-icon-cycle" style="background: #C5C9B1;">
+            <view class="menu-item-icon-cycle" style="background: rgb(127,125,128);">
                 <view class="ixchou-font ixchou-fengcai menu-item-icon"></view>
             </view>
             <text class="menu-item-text">教师风采</text>
         </view>
         <view class="menu-item" hover-class="menu-item-hover" bindtap="fireToStudents">
-            <view class="menu-item-icon-cycle" style="background: #B89556;">
+            <view class="menu-item-icon-cycle" style="background: rgb(82,186,178);">
                 <view class="ixchou-font ixchou-huazhuangshi menu-item-icon"></view>
             </view>
             <text class="menu-item-text">学生才艺</text>
