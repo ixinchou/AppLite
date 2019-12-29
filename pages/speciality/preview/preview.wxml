@@ -23,6 +23,7 @@
             </view>
         </view>
     </view>
+    <mp-gallery show="{{showGallery}}" img-urls="{{galleryImages}}" hide-on-click="{{true}}" ></mp-gallery>
     <view wx:if="{{uploadAble}}">
         <view class="bottom-bar" hover-class="bottom-bar-hover" bindtap="fireToSpecialityEdit">
             <view class="bottom-bar-icon-container">

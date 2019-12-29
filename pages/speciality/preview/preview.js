@@ -19,7 +19,9 @@ Page({
         time: '',
         html: '<p>没有内容</p>',
         isEditorReturn: 0,
-        uploadAble: false
+        uploadAble: false,
+        showGallery: false,
+        galleryImages: []
     },
 
     /**
@@ -42,6 +44,10 @@ Page({
         let obj = this.data.item;
         let rebate = (100 - (!!obj ? obj.rebate : 0)) / 100;
         let fee = (!!obj ? obj.fee : 0) / 100;
+        let images = [];
+        if (!!obj.cover) {
+            images.push(http + obj.cover.url)
+        }
         this.setData({
             cover: !!obj.cover ? obj.cover : null,
             content: !!obj.content ? obj.content : null,
@@ -50,7 +56,8 @@ Page({
             rebate: rebate,
             rebated: (fee * rebate).toFixed(2),
             showOriginal: !!obj ? (obj.showOriginalPrice != 0) : false,
-            time: (!!obj && !!obj.term) ? obj.term.name : ""
+            time: (!!obj && !!obj.term) ? obj.term.name : "",
+            galleryImages: images
         });
         wx.setNavigationBarTitle({
             title: obj.name
@@ -112,7 +119,9 @@ Page({
     },
     /**预览封面图 */
     previewCover: function() {
-
+        this.setData({
+            showGallery: true
+        });
     },
     /**
      * 转到添加编辑页
