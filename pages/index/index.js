@@ -46,7 +46,7 @@ Page({
         getApp().fetchingUserSession(e.detail.signature, e.detail.iv, e.detail.encryptedData);
     },
     refetchingUserInfo: function() {
-        app.refetchingUserInfo(true);
+        getApp().refetchingUserInfo(true);
     },
     checkFireToMain: function () {
         let self = this;
@@ -55,7 +55,7 @@ Page({
                 self.fireToMain();
             };
             // 重新拉取并绑定微信账户
-            app.refetchingUserInfo(false);
+            getApp().refetchingUserInfo(false);
         } else {
             self.fireToMain();
         }
