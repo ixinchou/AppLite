@@ -35,7 +35,7 @@
     <view wx:if="{{!uploadAble}}">
         <view class="bottom-bar" hover-class="bottom-bar-hover" bindtap="fireToApply">
             <view class="bottom-bar-icon-container">
-                <icon class="ixchou-font ixchou-jia bottom-bar-icon"></icon>
+                <icon class="ixchou-font ixchou-baoming-hollow bottom-bar-icon"></icon>
             </view>
             <text class="bottom-bar-icon">报名</text>
         </view>

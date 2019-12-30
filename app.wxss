@@ -22,13 +22,13 @@ form, checkbox, swiper, button {
 /*在线iconfont字体代码*/
 
 @font-face {
-    font-family: 'ixchou-font'; /* project id 1305853 */
-    src: url('//at.alicdn.com/t/font_1305853_viq0ws7boxq.eot');
-    src: url('//at.alicdn.com/t/font_1305853_viq0ws7boxq.eot?#iefix') format('embedded-opentype'),
-         url('//at.alicdn.com/t/font_1305853_viq0ws7boxq.woff2') format('woff2'),
-         url('//at.alicdn.com/t/font_1305853_viq0ws7boxq.woff') format('woff'),
-         url('//at.alicdn.com/t/font_1305853_viq0ws7boxq.ttf') format('truetype'),
-         url('//at.alicdn.com/t/font_1305853_viq0ws7boxq.svg#ixchou-font') format('svg');
+  font-family: 'ixchou-font';  /* project id 1305853 */
+  src: url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.eot');
+  src: url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.svg#ixchou-font') format('svg');
 }
 
 .ixchou-font {
@@ -88,8 +88,16 @@ form, checkbox, swiper, button {
   content: "\e6eb";
 }
 
+.ixchou-wo:before {
+  content: "\e7bc";
+}
+
 .ixchou-meishu:before {
   content: "\e609";
+}
+
+.ixchou-baoming:before {
+  content: "\e619";
 }
 
 .ixchou-nvhai:before {
@@ -120,6 +128,10 @@ form, checkbox, swiper, button {
   content: "\e60c";
 }
 
+.ixchou-baoming-black:before {
+  content: "\e601";
+}
+
 .ixchou-wudao:before {
   content: "\e643";
 }
@@ -144,8 +156,20 @@ form, checkbox, swiper, button {
   content: "\e627";
 }
 
+.ixchou-wo1:before {
+  content: "\e679";
+}
+
+.ixchou-baoming-hollow:before {
+  content: "\e639";
+}
+
 .ixchou-member:before {
   content: "\e60e";
+}
+
+.ixchou-baoming-plus:before {
+  content: "\e67f";
 }
 
 .ixchou-divider:before {
@@ -171,3 +195,4 @@ form, checkbox, swiper, button {
 .ixchou-add:before {
   content: "\e6ac";
 }
+

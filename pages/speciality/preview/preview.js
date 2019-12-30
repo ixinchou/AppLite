@@ -46,7 +46,7 @@ Page({
         let fee = (!!obj ? obj.fee : 0) / 100;
         let images = [];
         if (!!obj.cover) {
-            images.push(http + obj.cover.url)
+            images.push(this.data.http + obj.cover.url)
         }
         this.setData({
             cover: !!obj.cover ? obj.cover : null,
