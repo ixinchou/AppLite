@@ -50,9 +50,17 @@
             </view>
         </view>
     </view>
+    <view class="bottom-bar" hover-class="bottom-bar-hover" bindtap="fireToSpecialityEdit">
+        <button open-type="contact" style="display: flex; flex-direction: row; align-items: center;justify-content: center; width: 100%;">
+            <view class="bottom-bar-icon-container">
+                <icon class="ixchou-font ixchou-kefu bottom-bar-icon"></icon>
+            </view>
+            <text class="bottom-bar-icon">联系客服</text>
+        </button>
+    </view>
 </view>
 <modal id='modal' dialogTitle='添加孩子信息' dialogContent='我是内容' isShowning="{{dialogShowning}}" bind:cancelEvent="cancelChildDialog" bind:confirmEvent="confirmChildDialog">
 </modal>
-<modalInput id='modalInput' dialogTitle='{{inputableDialogTitle}}' inputPlaceHolder='{{inputableDialogHint}}' isShowning="{{singleInputDialogSHowning}}" inputType="{{inputableType}}" maxLength="{{inputableLength}}" inputDescription="{{inputDescription}}" bind:cancelEvent="cancelInputableDialog"
-    bind:confirmEvent="confirmInputabledDialog">
+<modalInput id='modalInput' dialogTitle='{{inputableDialogTitle}}' inputPlaceHolder='{{inputableDialogHint}}' isShowning="{{singleInputDialogSHowning}}" inputType="{{inputableType}}" maxLength="{{inputableLength}}" inputDescription="{{inputDescription}}"
+    bind:cancelEvent="cancelInputableDialog" bind:confirmEvent="confirmInputabledDialog">
 </modalInput>

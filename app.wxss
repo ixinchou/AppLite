@@ -22,13 +22,13 @@ form, checkbox, swiper, button {
 /*在线iconfont字体代码*/
 
 @font-face {
-  font-family: 'ixchou-font';  /* project id 1305853 */
-  src: url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.eot');
-  src: url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1305853_mkvzcp58jo.svg#ixchou-font') format('svg');
+    font-family: 'ixchou-font'; /* project id 1305853 */
+    src: url('//at.alicdn.com/t/font_1305853_wg2w4zksza.eot');
+    src: url('//at.alicdn.com/t/font_1305853_wg2w4zksza.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_1305853_wg2w4zksza.woff2') format('woff2'),
+         url('//at.alicdn.com/t/font_1305853_wg2w4zksza.woff') format('woff'),
+         url('//at.alicdn.com/t/font_1305853_wg2w4zksza.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_1305853_wg2w4zksza.svg#ixchou-font') format('svg');
 }
 
 .ixchou-font {
@@ -96,10 +96,6 @@ form, checkbox, swiper, button {
   content: "\e609";
 }
 
-.ixchou-baoming:before {
-  content: "\e619";
-}
-
 .ixchou-nvhai:before {
   content: "\e600";
 }
@@ -128,12 +124,12 @@ form, checkbox, swiper, button {
   content: "\e60c";
 }
 
-.ixchou-baoming-black:before {
-  content: "\e601";
-}
-
 .ixchou-wudao:before {
   content: "\e643";
+}
+
+.ixchou-kefu:before {
+  content: "\e76c";
 }
 
 .ixchou-zhuchiren:before {
@@ -168,10 +164,6 @@ form, checkbox, swiper, button {
   content: "\e60e";
 }
 
-.ixchou-baoming-plus:before {
-  content: "\e67f";
-}
-
 .ixchou-divider:before {
   content: "\e618";
 }
@@ -195,4 +187,3 @@ form, checkbox, swiper, button {
 .ixchou-add:before {
   content: "\e6ac";
 }
-
