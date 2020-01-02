@@ -1,5 +1,7 @@
 {
     "usingComponents": {
-        "gallery": "/components/gallery/gallery"
+        "gallery": "/components/gallery/gallery",
+        "mp-actionSheet": "../../components/actionsheet/actionsheet",
+        "mp-halfScreenDialog": "/components/half-screen-dialog/half-screen-dialog"
     }
 }

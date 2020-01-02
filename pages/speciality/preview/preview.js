@@ -21,7 +21,18 @@ Page({
         isEditorReturn: 0,
         uploadAble: false,
         showGallery: false,
-        galleryImages: []
+        galleryImages: [],
+        showingActionSheets: false,
+        actions: [{
+                text: '给自己报名',
+                type: 'warn',
+                value: 1
+            },
+            {
+                text: '给孩子报名',
+                value: 2
+            }
+        ]
     },
 
     /**
@@ -136,10 +147,51 @@ Page({
             url: '/pages/speciality/edit/edit',
         });
     },
+    /**报名类型反馈 */
+    onActionTap: function(e) {
+        switch (e.detail.value) {
+            case 1:
+                // 给自己报名
+                this.checkApplyMyInfos();
+                break;
+            case 2:
+                // 给孩子报名
+                break;
+        }
+        this.openActions(false);
+    },
+    openActions: function(opening) {
+        this.setData({
+            showingActionSheets: opening
+        });
+    },
     /**
      * 报名
      */
     fireToApply: function() {
-
+        this.openActions(true);
+    },
+    /**给自己报名时检查名字和联系方式是否都已经更改过 */
+    checkApplyMyInfos: function() {
+        // 检测用户名是否更改
+        let isNamed = !!app.myInfo && !app.api.isEmpty(app.myInfo.userName);
+        let isPhoned = !!app.myInfo && !app.api.isEmpty(app.myInfo.phone);
+        if (!isNamed || !isPhoned) {
+            // 提醒去修改名字和联系方式
+            let content = !isNamed ? "【姓名】" : "";
+            content += !isPhoned ? ((!app.api.isEmpty(content) ? "、" : "") + "【联系方式】") : "";
+            wx.showModal({
+                content: "为了切实保障您的学习权益，请先绑定" + content + "后再报名！",
+                confirmText: "现在就去",
+                cancelText: "下次再说",
+                success(res) {
+                    if (res.confirm) {
+                        wx.navigateTo({
+                            url: '/pages/person/person',
+                        });
+                    }
+                }
+            });
+        }
     }
 })
