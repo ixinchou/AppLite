@@ -9,6 +9,8 @@
         "pages/speciality/list/list",
         "pages/speciality/edit/edit",
         "pages/speciality/preview/preview",
+        "pages/speciality/preview/confirm",
+        "pages/speciality/preview/purchase",
         "pages/moment/edit/edit",
         "pages/moment/list/list",
         "pages/moment/preview/preview"

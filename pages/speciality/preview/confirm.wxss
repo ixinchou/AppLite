@@ -1,0 +1,6 @@
+/* pages/speciality/preview/confirm.wxss */
+@import '../../../weui.wxss';
+
+page, .page {
+    height: 100%;
+}

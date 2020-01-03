@@ -4,6 +4,7 @@ const storage = require("storage.js");
 const editor = require("editor.js");
 const file = require("file.js");
 const page = require("page.js");
+const wx_utils = require('./wx.js')
 
 App({
     onLaunch: function() {
@@ -63,6 +64,7 @@ App({
         editor: editor,
         file: file,
         page: page,
+        wx: wx_utils,
         mottoChanged: false,
         userInfo: null,
         hasSession: false,

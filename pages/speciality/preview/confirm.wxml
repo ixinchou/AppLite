@@ -1,0 +1,20 @@
+<!--pages/speciality/preview/confirm.wxml-->
+<view class="page">
+    <mp-msg title="报名须知">
+        <view slot="desc">您正在报名参加薪酬教育培训学校的<navigator url="" class="weui-msg__link">{{!!item?item.name:'未设定的课程名称'}}</navigator>课程，为了您的相关权益，请仔细阅读以下责任书和注意事项</view>
+        <view slot="extend">
+            <view>1. <navigator url="" class="weui-msg__link">免责协议</navigator></view>
+            <view>2. <navigator url="" class="weui-msg__link">上课须知</navigator></view>
+            <view>3. <navigator url="" class="weui-msg__link">其他内容</navigator></view>
+        </view>
+        <view slot="handle">
+            <button class="weui-btn" type="primary" bindtap="onConfirm">确定报名</button>
+        </view>
+        <view slot="footer">
+            <view class="weui-footer__links" style="display: none;">
+                <navigator url="" class="weui-footer__link">底部链接文本</navigator>
+            </view>
+            <view class="weui-footer__text" style="display: none;">Copyright © 2008-2016 weui.io</view>
+        </view>
+    </mp-msg>
+</view>

@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "mp-msg": "../../components/msg/msg"
+    },
+    "navigationBarTitleText": "报名成功"
+}

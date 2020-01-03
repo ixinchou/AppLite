@@ -1,0 +1,18 @@
+<!--pages/speciality/preview/purchase.wxml-->
+<view class="page">
+    <mp-msg type="success" title="报名成功">
+        <view slot="desc">您已经成功报名，请尽早支付报名费用，我们会在收到您的付款后尽快为您办理入学事宜</view>
+        <view slot="extend">
+            <view class="page-section">
+                    <view>需支付金额</view>
+                    <view class="price">0.01</view>
+                    <view class="desc">默认使用微信支付</view>
+                    <view class="btn-area">
+                        <button type="primary" bindtap="requestPayment" loading="{{loading}}">支付</button>
+                    </view>
+                </view>
+        </view>
+        <view slot="footer">
+        </view>
+    </mp-msg>
+</view>

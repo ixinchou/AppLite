@@ -180,18 +180,20 @@ Page({
             // 提醒去修改名字和联系方式
             let content = !isNamed ? "【姓名】" : "";
             content += !isPhoned ? ((!app.api.isEmpty(content) ? "、" : "") + "【联系方式】") : "";
-            wx.showModal({
-                content: "为了切实保障您的学习权益，请先绑定" + content + "后再报名！",
-                confirmText: "现在就去",
-                cancelText: "下次再说",
-                success(res) {
-                    if (res.confirm) {
-                        wx.navigateTo({
-                            url: '/pages/person/person',
-                        });
-                    }
+            app.wx.showDialog({
+                text: "为了切实保障您的学习权益，请先绑定" + content + "后再报名！",
+                confirmText: "去绑定",
+                onConfirm: function() {
+                    wx.navigateTo({
+                        url: '/pages/person/person',
+                    });
                 }
             });
+        } else {
+            // 发起报名
+            wx.navigateTo({
+                url: './confirm',
+            })
         }
     }
 })
